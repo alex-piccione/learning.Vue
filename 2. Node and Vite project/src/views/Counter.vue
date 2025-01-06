@@ -1,9 +1,9 @@
 <script setup lang="ts">
+
 import CounterLogic from "../logic/Counter"
+import OrangeButton from "../components/OrangeButton.vue"
 
-import {ref} from "vue"
-
-//const counter = ref(0)
+const onClick = (event:MouseEvent) => CounterLogic.increment()
 
 </script>
 
@@ -12,7 +12,10 @@ import {ref} from "vue"
     <div>
         Counter: {{ CounterLogic.counter }}
 
-        <button @click="CounterLogic.increment">Increase</button>
+        <!--<button @click="CounterLogic.increment">Increase</button>-->
+        <OrangeButton 
+            text="Increment"
+            :onclick="onClick"  />
     </div>
 </main>
 </template>
