@@ -1,2 +1,3 @@
-# poc.Vue
-Vue study
+# Learning Vue
+
+Vue study.
