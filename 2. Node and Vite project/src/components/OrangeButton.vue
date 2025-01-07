@@ -1,4 +1,4 @@
-<<script setup lang="ts">
+<script setup lang="ts">
     import { defineProps } from 'vue'
 
     defineProps<{
@@ -8,9 +8,9 @@
 </script>
 
 <template>
-    <button class="orange-button" @click="{{onClick}}">{{ text }}</button>    
+    <button class="orange-button" @click="onClick">{{ text }}</button>    
 </template>
->
+
 <style scoped>
     .orange-button {
         cursor: pointer;
