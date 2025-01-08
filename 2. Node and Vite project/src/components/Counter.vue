@@ -18,6 +18,10 @@ const onClick = (event:any) => { counter.value++}
 
 <style scoped>
 .container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
     padding: 5px;
     background-color: rgba(200, 200, 200, .2);
     border: solid 2px rgba(200, 200, 200, 0.4);

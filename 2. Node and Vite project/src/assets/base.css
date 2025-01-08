@@ -36,6 +36,22 @@
   --section-gap: 160px;
 }
 
+:root {
+  --gap: 0.5rem;
+  --gap-xs: 0.2rem;
+  --gap-xl: 1rem;  
+}
+
+/* borders */
+:root {
+  --border-radius: 0.5rem;
+  --border-radius-xs: 0.3rem;
+  --border-radius-xl: 1rem;
+
+  --border-color: rgba(200, 200, 200, 0.4);
+  --border-color-shadow:  rgba(200, 200, 200, 0.1);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
@@ -84,3 +100,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+

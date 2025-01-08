@@ -2,7 +2,7 @@
 
 import Counter from "@/components/Counter.vue";
 
-import CounterLogic from "../logic/Counter"
+import CounterLogic from "../services/Counter"
 import OrangeButton from "../components/OrangeButton.vue"
 
 const onClick = (event:MouseEvent) => CounterLogic.increment()
