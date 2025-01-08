@@ -12,10 +12,9 @@ const onClick = (event:MouseEvent) => CounterLogic.increment()
     <div>
         Counter: {{ CounterLogic.counter }}
 
-        <!--<button @click="CounterLogic.increment">Increase</button>-->
         <OrangeButton 
             text="Increment"
-            :onclick="onClick"  />
+            :onClick="onClick"  />
     </div>
 </main>
 </template>
