@@ -1,0 +1,17 @@
+@import "base.css";
+
+.button-row {
+    border-top: var(--color-line);
+    padding: var(--gap);
+}
+
+.button-text {
+    padding: var(--gap);
+    /*background-color: var(--ba);*/
+    background: inherit;
+    color: var(--color-text-highlight);
+}
+
+.button {
+    padding: var(--gap);
+}

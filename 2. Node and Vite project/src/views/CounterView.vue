@@ -3,7 +3,7 @@
 import Counter from "@/components/Counter.vue";
 
 import CounterLogic from "../services/Counter"
-import OrangeButton from "../components/OrangeButton.vue"
+import OrangeButton from "../components/controls/OrangeButton.vue"
 
 const onClick = (event:MouseEvent) => CounterLogic.increment()
 
