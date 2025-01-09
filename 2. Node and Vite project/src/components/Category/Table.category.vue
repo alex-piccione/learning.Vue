@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>            
-            <tr v-for="category in categories" data-id="{{ category.Id }}" @click="select(category.Id)">
+            <tr v-for="category in categories" data-id="{{ category.Id }}" :key="category.Id" @click="select(category.Id)" class="clickable">
                 <td>{{ category.Name }}</td>
                 <td>{{ category.Description }}</td>
                 <td>{{ category.CreatedAt.shortDate() }}</td>
@@ -24,9 +24,5 @@ defineProps<{
     categories:Category[]
     select: (id:number) => void
     }>()
-
-const selectAA = (id:number) => {
-   // todo change view
-}
 
 </script>

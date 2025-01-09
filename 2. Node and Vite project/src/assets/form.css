@@ -1,0 +1,20 @@
+.form-field {
+    padding: 0 var(--gap);
+    min-width: 50px;
+}
+
+.form-label {
+    padding: 0 var(--gap);
+    min-width: 100px;
+    width:30%;
+}
+
+.form-control {
+    padding: 0 var(--gap);
+    min-width: 100px;
+    width:70%;    
+}
+
+textarea.form-control {
+    vertical-align: top;
+}

@@ -29,8 +29,8 @@
 import { ref } from 'vue';
 import type Category from '@/entities/Category'
 import CategoryService from "@/services/Categories.service"
-import CategoriesTable from '@/components/Category/CategoriesTable.vue';
-import CategoryNew from '@/components/Category/Category.New.vue';
+import CategoriesTable from '@/components/Category/Table.category.vue';
+import CategoryNew from '@/components/Category/New.category.vue';
 import OrangeButton from '@/components/controls/OrangeButton.vue';
 import Button from '@/components/controls/Button.vue';
 import TextButton from '@/components/controls/TextButton.vue';

@@ -107,3 +107,10 @@ body {
 }
 
 
+.clickable {
+  cursor: pointer;
+}
+
+tr.clickable:hover {
+  border-bottom:1px solid var(--color-highlight);
+}

@@ -3,6 +3,12 @@
 .button-row {
     border-top: var(--color-line);
     padding: var(--gap);
+
+    display: flex;
+}
+
+.button-row button {
+    margin: 0 var(--gap);
 }
 
 .button-text {
@@ -14,4 +20,18 @@
 
 .button {
     padding: var(--gap);
+    cursor: pointer;
+    border-radius: 3px;
 }
+
+    .button-create {
+        background-color: #0e7272;
+    }
+
+    .button-cancel {
+        background-color: #777;
+    }
+
+    .button-delete {
+        background-color: #d03030;
+    }
