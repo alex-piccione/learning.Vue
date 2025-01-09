@@ -3,11 +3,6 @@
         <OrangeButton text="Click here" v-on:click="onClick"></OrangeButton>
         Count: {{ counter }}
     </div>
-
-<div v-if="counter > 2">
- more then 2
-</div>
-
 </template>
 
 <script setup lang="ts">

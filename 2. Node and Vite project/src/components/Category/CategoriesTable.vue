@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>            
-            <tr v-for="category in categories" data-id="{{ category.Id }}">
+            <tr v-for="category in categories" data-id="{{ category.Id }}" @click="select(category.Id)">
                 <td>{{ category.Name }}</td>
                 <td>{{ category.Description }}</td>
                 <td>{{ category.CreatedAt.shortDate() }}</td>
@@ -18,9 +18,15 @@
 </template>
 
 <script setup lang="ts">
-import type Category from '@/entities/Category';
+import type Category from '@/entities/Category'
 
 defineProps<{
     categories:Category[]
+    select: (id:number) => void
     }>()
+
+const selectAA = (id:number) => {
+   // todo change view
+}
+
 </script>
