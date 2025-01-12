@@ -1,13 +1,17 @@
 import axios from 'axios'
 import Configuration from '@/configuration'
+import { addAxiosDateTransformer } from 'axios-date-transformer';
 
-const api = axios.create({
+let api = axios.create({
   baseURL: Configuration.apiUrl,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json'
   }
 })
+
+// AXIOS does not return Date type (it uses string type)
+api = addAxiosDateTransformer(api);
 
 export const manageError = (err:any) => {
   if (axios.isAxiosError(err) && err.response) {

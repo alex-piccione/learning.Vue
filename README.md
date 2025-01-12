@@ -14,3 +14,9 @@ https://codepen.io/nzbin/pen/GGrXbp
 
 
 ## Colors 
+
+
+## Axios Date transformer
+
+Axios does not create Date object but use string type.  
+NPM ``axios-date-transformer`` library fill this gap.  
