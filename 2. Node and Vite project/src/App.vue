@@ -1,9 +1,23 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue'
+import { getInfo, type InfoResponse } from './services/api';
 
 const isLoggedIn = ref(false)
+
+const version = ref<string>("loading")
+
+onMounted(() => {
+  getInfo()
+    .then(info => version.value = info.version)
+    .catch(err => {
+      version.value = "unknown"
+      console.error(`Failed to get API Info. ${err}`)
+    })
+})
+
+
 </script>
 
 <template>
@@ -12,6 +26,8 @@ const isLoggedIn = ref(false)
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+
+      <div>API version: <span :class="version != 'unknown' ? 'green' : 'error'">{{ version }}</span></div>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

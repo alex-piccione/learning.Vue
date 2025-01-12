@@ -18,6 +18,13 @@ a,
   padding: 3px;
 }
 
+.error {
+  font-weight: 600;
+  color: rgb(255, 17, 17);
+  transition: 0.4s;
+  padding: 3px;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
