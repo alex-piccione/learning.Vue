@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
-import { getInfo, type InfoResponse } from './services/api';
+import { getInfo, type InfoResponse } from './services/API/api';
 
 const isLoggedIn = ref(false)
 

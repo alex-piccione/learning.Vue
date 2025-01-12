@@ -1,15 +1,15 @@
 <template>
-    <div>
+<div>
     <h1>Login</h1>
-    <div v-if="isLoading">loading...</div>    
+    <div v-if="loading">loading...</div>    
     <form v-else @submit.prevent="submit">
         <div class="field">
             <label for="user">User</label>
-            <input id="user" @input="clearMessage" />
+            <input id="user" @input="clearMessage" v-model="loginForm.username" />
         </div>
         <div class="field">
             <label for="password">Password</label>
-            <input id="password" type="password" />
+            <input id="password" type="password" @input="clearMessage"  v-model="loginForm.password" />
         </div>
         <hr />
         <div>
@@ -17,30 +17,35 @@
             <button type="reset">Reset</button>
             <button type="button">Cancel</button>
         </div>
+        
+        <div v-if="message" style="margin-top: 5px">
+            <div class="error">{{ message }}</div>
+        </div>
     </form>
-    <div v-if="message">
-        <hr />
-        <div>{{ message }}</div>
-    </div>
 </div>
+
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import AuthService from '@/services/Auth.service';
+import { ref, reactive } from 'vue';
 
-const isLoading = ref(false)
-const message = ref(null)
+const loading = ref(false)
+const message = ref<string|null>(null)
 
-const submit = () => {
-    isLoading.value = true
+const loginForm = reactive({username:"", password:""})
 
-    setTimeout(() =>{ isLoading.value=false }, 5000)
+const authService = new AuthService()
 
+const submit = async () => {
+    loading.value = true
+    let responseError = await authService.login(loginForm.username, loginForm.password)
+    loading.value = false
+
+    if (responseError) message.value = responseError
 }
 
-const clearMessage = () => {
-    message.value = null
-}
+const clearMessage = () => message.value = null
 
 </script>
 

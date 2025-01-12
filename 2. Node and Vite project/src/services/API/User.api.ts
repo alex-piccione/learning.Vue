@@ -1,0 +1,22 @@
+import api, { manageError } from "./api"
+import { type Response } from "./api.response"
+
+export interface LoginResponse {
+    authToken: string
+    authTokenExpiration: Date
+}
+
+export const UserApi = {
+
+    login: async (username:string, password:string): Promise<LoginResponse|string> => {
+        const params = new URLSearchParams({
+            username: username,
+            password: password
+          })
+
+        return api.get<LoginResponse>(`/user/login?${params.toString()}`)
+          .then(ok => ok.data )
+          .catch(manageError)
+    }
+
+}
