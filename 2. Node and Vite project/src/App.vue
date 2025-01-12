@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+
+const isLoggedIn = ref(false)
 </script>
 
 <template>
@@ -12,6 +15,8 @@ import HelloWorld from './components/HelloWorld.vue'
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/login" v-if="!isLoggedIn">Login</RouterLink>
+        <RouterLink to="/signup">Sign Up</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/counter">Counter</RouterLink>
         <RouterLink to="/categories">Categories</RouterLink>

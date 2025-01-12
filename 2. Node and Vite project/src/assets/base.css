@@ -37,6 +37,13 @@
   --color-text-highlight: var(--color-highlight);
 
   --color-line: var(vt-c-divider-light-1);
+  
+  --color-control: rgb(100,100, 110);
+  --color-control-light: rgb(120, 120, 120);
+  --color-control-ark: rgb(60, 50, 50);
+
+  --color-green: rgba(0,180,10,1);
+  --color-green-dark: rgba(0,150,5,1);
 
   --section-gap: 160px;
 }

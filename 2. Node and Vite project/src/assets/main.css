@@ -36,3 +36,12 @@ a,
     padding: 0 2rem;
   }
 }
+
+
+
+/* text.css  */
+
+h1 {
+  color: var(--color-heading);
+  margin-bottom: var(--gap-xl);
+}
