@@ -5,6 +5,7 @@ const AuthToken = "AuthToken"
 export default class AuthService {
     
     static authToken:string|undefined = undefined
+    static username:string|undefined = undefined
 
     login = async (username:string, password:string) => {
         let response = await UserApi.login(username, password)
@@ -15,8 +16,9 @@ export default class AuthService {
         }
 
         const loginResponse = response as LoginResponse        
-        CookieService.setCookie(AuthToken, loginResponse.authToken, loginResponse.authTokenExpiration)
+        CookieService.setCookie(AuthToken, loginResponse.authToken, loginResponse.authTokenExpiresAt)
         AuthService.authToken = loginResponse.authToken
+        AuthService.username = loginResponse.username
         return null
     }
 

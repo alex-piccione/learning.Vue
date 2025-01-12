@@ -2,8 +2,9 @@ import api, { manageError } from "./api"
 import { type Response } from "./api.response"
 
 export interface LoginResponse {
+    username: string
     authToken: string
-    authTokenExpiration: Date
+    authTokenExpiresAt: Date
 }
 
 export const UserApi = {

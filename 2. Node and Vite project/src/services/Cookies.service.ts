@@ -10,7 +10,7 @@ export default class CookieService {
     }*/
 
     static setCookie = (name:string, value:string, expiresAt:Date) => {
-      console.log(`expiresAt: ${typeof expiresAt}`)
+      console.log(`expiresAt: ${expiresAt}`)
       document.cookie = `${name}=${value}; expires=${expiresAt.toUTCString()}; path=/; secure;`
     }
 }
