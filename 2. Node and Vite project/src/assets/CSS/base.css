@@ -23,8 +23,17 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
+/* Theme colors */
+:root {
+  
+  --color-main: rgb(#555);
+  --color-alternative: rgb(72, 129, 187);
+  --color-highlight: rgb(#455);
+}
+
 /* semantic color variables for this project */
 :root {
+
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -40,7 +49,8 @@
   
   --color-control: rgb(100,100, 110);
   --color-control-light: rgb(120, 120, 120);
-  --color-control-ark: rgb(60, 50, 50);
+  --color-control-dark: rgb(60, 50, 50);
+  --color-control-focus: var(--color-alternative);
 
   --color-green: rgba(0,180,10,1);
   --color-green-dark: rgba(0,150,5,1);

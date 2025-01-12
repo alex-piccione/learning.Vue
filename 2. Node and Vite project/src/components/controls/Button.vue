@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
     defineProps<{
         kind:Kind
         text?:string
@@ -14,7 +13,6 @@
         kind === "Cancel" ? "button-cancel" :
         kind === "Delete" ? "button-delete" :
         ""
-
 </script>
 
 <template>
@@ -24,7 +22,8 @@
 <style scoped>
     @import "../../assets/base.css";
 
-    .button {        _color: var(--vt-c-white);
+    .button {        
+        _color: var(--vt-c-white);
         color: var(--color-text);
         display: inline-block;
         font-weight: bold;

@@ -1,8 +1,8 @@
 <template>
 <div>
     <h1>Login</h1>
-    <div v-if="loading">loading...</div>    
-    <form v-else @submit.prevent="submit">
+    <Loading :loading="loading" text="loading form"></Loading>  
+    <form v-if="! loading" @submit.prevent="submit">
         <div class="field">
             <label for="user">User</label>
             <input id="user" @input="clearMessage" v-model="loginForm.username" />
@@ -15,7 +15,6 @@
         <div>
             <button type="submit">Login</button>
             <button type="reset">Reset</button>
-            <button type="button">Cancel</button>
         </div>
         
         <div v-if="message" style="margin-top: 5px">
@@ -27,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import Loading from '@/components/Loading.vue';
 import AuthService from '@/services/Auth.service';
 import { ref, reactive } from 'vue';
 
