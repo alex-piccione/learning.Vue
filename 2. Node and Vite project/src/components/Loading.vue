@@ -1,7 +1,9 @@
 <template>
     <div v-if="loading" class="stage">
         <div class="text">{{ text || "loading"}}</div>
-        <div class="dot-flashing"></div>
+        <div>
+            <div class="dot-flashing"></div>
+        </div>
     </div>
 </template>
 
@@ -18,6 +20,7 @@ defineProps<{
 
 .stage {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -26,13 +29,15 @@ defineProps<{
     overflow: hidden;
 }
 
-.loading {
+.text {
+    flex: 1;
     text-align: center;
-    margin-bottom: 5px;
-    font-weight: 600;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
 .dot-flashing {
+  flex: 1;
   position: relative;
   width: 10px;
   height: 10px;
