@@ -6,9 +6,9 @@
     }>()
 
     type Kind = "Generic" | "Create" | "Cancel" | "Delete"
-    
+
     const buttonText = (kind:Kind, text?:string,) => text || (kind === "Generic" ? "text property is missing" : kind)
-    const buttonClass = (kind:Kind) => 
+    const buttonClass = (kind:Kind) =>
         kind === "Create" ? "button-create" :
         kind === "Cancel" ? "button-cancel" :
         kind === "Delete" ? "button-delete" :
@@ -16,13 +16,14 @@
 </script>
 
 <template>
-    <button class="button" :class="buttonClass(kind)" @click="onClick">{{ buttonText(kind, text) }}</button>    
+    <button class="button" :class="buttonClass(kind)" @click="onClick">{{ buttonText(kind, text) }}</button>
 </template>
 
 <style scoped>
-    @import "../../assets/base.css";
+    /*@import "../../assets/base.css";*/
+    @import "../../assets/CSS/base.css";
 
-    .button {        
+    .button {
         _color: var(--vt-c-white);
         color: var(--color-text);
         display: inline-block;

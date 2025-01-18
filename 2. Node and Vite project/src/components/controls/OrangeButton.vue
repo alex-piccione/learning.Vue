@@ -1,16 +1,16 @@
 <script setup lang="ts">
     defineProps<{
-        text:string; 
+        text:string;
         onClick:(event: MouseEvent) => void
     }>()
 </script>
 
 <template>
-    <button class="orange-button" @click="onClick">{{ text }}</button>    
+    <button class="orange-button" @click="onClick">{{ text }}</button>
 </template>
 
 <style scoped>
-    @import "../../assets/base.css";
+    @import "../../assets/CSS/base.css";
 
     .orange-button {
         cursor: pointer;

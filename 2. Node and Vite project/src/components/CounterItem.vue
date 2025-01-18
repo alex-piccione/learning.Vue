@@ -11,7 +11,7 @@ import { ref } from 'vue'
 
 const counter = ref(0)
 
-const onClick = (event:any) => { counter.value++}
+const onClick = () => { counter.value++}
 
 </script>
 
