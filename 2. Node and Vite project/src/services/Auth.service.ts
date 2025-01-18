@@ -1,26 +1,30 @@
-import { UserApi, type LoginResponse } from "./API/User.api"
-import CookieService from "./Cookies.service"
+import { UserApi, type LoginResponse } from './API/User.api'
+import CookieService from './Cookies.service'
+import { useUserStore } from '@/stores/UserStore'
 
-const AuthToken = "AuthToken"
+//const userStore = useUserStore()
+const AuthToken = 'AuthToken'
+
 export default class AuthService {
-    
-    static authToken:string|undefined = undefined
-    static username:string|undefined = undefined
-
-    login = async (username:string, password:string) => {
-        let response = await UserApi.login(username, password)
-        if (typeof response === "string")
-        {
-            console.error(`Failed to login. ${response}`)
-            return response
-        }
-
-        const loginResponse = response as LoginResponse        
-        CookieService.setCookie(AuthToken, loginResponse.authToken, loginResponse.authTokenExpiresAt)
-        AuthService.authToken = loginResponse.authToken
-        AuthService.username = loginResponse.username
-        return null
+  login = async (username: string, password: string) => {
+    const response = await UserApi.login(username, password)
+    if (typeof response === 'string') {
+      console.error(`Failed to login. ${response}`)
+      return response
     }
 
-    getAuthToken = CookieService.readCookie(AuthToken)
+    const loginResponse = response as LoginResponse
+
+    const userStore = useUserStore()
+    userStore.login({ isAuthenticated: true, username: loginResponse.username, authToken: loginResponse.authToken })
+    CookieService.setCookie(AuthToken, loginResponse.authToken, loginResponse.authTokenExpiresAt)
+  }
+
+  logout = () => {
+    const userStore = useUserStore()
+    userStore.logout()
+    CookieService.removeCookie(AuthToken)
+  }
+
+  getAuthToken = CookieService.readCookie(AuthToken)
 }

@@ -41,6 +41,4 @@ export interface InfoResponse {
 
 export const getInfo = async () => (await api.get<InfoResponse>("/info")).data
 
-
-
 export default api

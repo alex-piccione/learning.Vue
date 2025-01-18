@@ -1,19 +1,18 @@
 # Learning Vue
 
-Vue study.
+Vue study.  
+  
+Project with proper implementation:  
+``cd 2.\ Node\ and\ Vite\ project``   
+``npm run dev``
 
 
-``cd 2.\ Node\ and\ Vite\ project``
-
-
-
-
-## 3 dots animations
+## Loading animations with 3 dots
 
 https://codepen.io/nzbin/pen/GGrXbp
 
 
-## Colors 
+## Colors for Theme
 
 
 ## Axios Date transformer

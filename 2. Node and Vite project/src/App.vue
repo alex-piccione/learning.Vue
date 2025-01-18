@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, onMounted } from 'vue'
-import { getInfo, type InfoResponse } from './services/API/api';
+import { ref, onMounted, reactive, watch } from 'vue'
+import { getInfo } from './services/API/api';
+import { useUserStore } from './stores/UserStore';
+import AuthService from './services/Auth.service';
 
-const isLoggedIn = ref(false)
 
+const authService = new AuthService()
+const userStore = useUserStore()
+
+//const authService = reactive ()
+const isAuthenticated = ref(userStore.isAuthenticated)
+const username = ref(userStore.username)
+
+//import { storeToRefs } from "pinia"
 const version = ref<string>("loading")
 
 onMounted(() => {
@@ -17,6 +26,10 @@ onMounted(() => {
     })
 })
 
+/*
+watch(() => authService.Username, async (oldValue, newValue) => {
+  isAuthenticated.value = newValue !== undefined
+})*/
 
 </script>
 
@@ -29,9 +42,14 @@ onMounted(() => {
 
       <div>API version: <span :class="version != 'unknown' ? 'green' : 'error'">{{ version }}</span></div>
 
+      <div>User: {{ username }}</div>
+
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login" v-if="!isLoggedIn">Login</RouterLink>
+        <RouterLink to="/login" v-if="!isAuthenticated">Login</RouterLink>
+        <RouterLink to="" v-if="isAuthenticated" :custom="true">
+          <a @click="authService.logout">Logout</a>
+          </RouterLink>
         <RouterLink to="/signup">Sign Up</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/counter">Counter</RouterLink>
