@@ -1,1 +1,17 @@
 name: Deploy VUE application Docker image
+
+on:
+  push:
+    branches: [main]
+
+env:
+  VERSION: 0.1.${{github.run_number}}
+  SERVICE_PORT: 50300
+
+jobs:
+  docker_image:
+    name: Create Docker image
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
