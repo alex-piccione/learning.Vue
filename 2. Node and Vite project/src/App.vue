@@ -1,35 +1,27 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, onMounted, reactive, watch } from 'vue'
-import { getInfo } from './services/API/api';
-import { useUserStore } from './stores/UserStore';
-import AuthService from './services/Auth.service';
-
+import { ref, onMounted } from 'vue'
+import { getInfo } from './services/API/api'
+import { useUserStore } from './stores/UserStore'
+import AuthService from './services/Auth.service'
 
 const authService = new AuthService()
 const userStore = useUserStore()
-
-//const authService = reactive ()
-const isAuthenticated = ref(userStore.isAuthenticated)
 const username = ref(userStore.username)
 
-//import { storeToRefs } from "pinia"
-const version = ref<string>("loading")
+const ui_version = import.meta.env.VITE_UI_VERSION
+const api_version = ref<string>("loading")
 
 onMounted(() => {
+  console.log("App.vue - onMounted")
   getInfo()
-    .then(info => version.value = info.version)
+    .then(info => api_version.value = info.version)
     .catch(err => {
-      version.value = "unknown"
+      api_version.value = "unknown"
       console.error(`Failed to get API Info. ${err}`)
     })
 })
-
-/*
-watch(() => authService.Username, async (oldValue, newValue) => {
-  isAuthenticated.value = newValue !== undefined
-})*/
 
 </script>
 
@@ -40,14 +32,15 @@ watch(() => authService.Username, async (oldValue, newValue) => {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <div>API version: <span :class="version != 'unknown' ? 'green' : 'error'">{{ version }}</span></div>
+      <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
+      <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
 
       <div>User: {{ username }}</div>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login" v-if="!isAuthenticated">Login</RouterLink>
-        <RouterLink to="" v-if="isAuthenticated" :custom="true">
+        <RouterLink to="/login" v-if="!userStore.isAuthenticated">Login</RouterLink>
+        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
           <a @click="authService.logout">Logout</a>
           </RouterLink>
         <RouterLink to="/signup">Sign Up</RouterLink>

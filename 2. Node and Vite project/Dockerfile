@@ -24,5 +24,9 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
+# both ARG + ENV are required to have the environment variable set in the container. Docker rubbish logic.
+ARG VERSION 
+ENV VITE_UI_VERSION=$VERSION
+
 CMD ["nginx", "-g", "daemon off;"]
 
