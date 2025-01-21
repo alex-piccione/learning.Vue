@@ -13,7 +13,7 @@ let api = axios.create({
 // AXIOS does not return Date type (it uses string type)
 api = addAxiosDateTransformer(api);
 
-export const manageError = (err:any) => {
+export const manageError = (err:Error) => {
   if (axios.isAxiosError(err) && err.response) {
     // Extract error message from API JSON esponse
     const { error } = err.response.data;  // error is a field in API JSON response
@@ -21,7 +21,7 @@ export const manageError = (err:any) => {
       console.error('failed to parse API Error:', err.response);
       return err.message
     }
-    else 
+    else
     {
       console.error('API Error:', error);
       return error
@@ -31,7 +31,6 @@ export const manageError = (err:any) => {
     console.error('Error:', err.message);
     return err.message
   }
-
 }
 
 

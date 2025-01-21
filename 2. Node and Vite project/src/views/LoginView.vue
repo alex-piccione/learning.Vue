@@ -51,8 +51,8 @@ const submit = async () => {
     }
     else {
       console.log(`login success. ${userStore.isAuthenticated}`)
-      const loginResponse = result.value
-      userStore.login({ isAuthenticated: true, username: loginResponse.username, authToken: loginResponse.authToken })
+      //const loginResponse = result.value
+      //userStore.login({ isAuthenticated: true, username: loginResponse.username, authToken: loginResponse.authToken })
     }
 }
 

@@ -8,7 +8,6 @@ import AuthService from './services/Auth.service'
 
 const authService = new AuthService()
 const userStore = useUserStore()
-const username = ref(userStore.username)
 
 const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>("loading")
@@ -21,6 +20,9 @@ onMounted(() => {
       api_version.value = "unknown"
       console.error(`Failed to get API Info. ${err}`)
     })
+
+  //authService.getAuthToken
+
 })
 
 </script>
@@ -34,8 +36,7 @@ onMounted(() => {
 
       <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
       <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
-
-      <div>User: {{ username }}</div>
+      <div>Hello {{ userStore.username }}</div>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -44,7 +45,7 @@ onMounted(() => {
           <a @click="authService.logout">Logout</a>
           </RouterLink>
         <RouterLink to="/signup">Sign Up</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <!--<RouterLink to="/about">About</RouterLink>-->
         <RouterLink to="/counter">Counter</RouterLink>
         <RouterLink to="/categories">Categories</RouterLink>
       </nav>
