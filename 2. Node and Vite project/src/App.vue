@@ -21,8 +21,7 @@ onMounted(() => {
       console.error(`Failed to get API Info. ${err}`)
     })
 
-  //authService.getAuthToken
-
+  authService.checkAuthentication("onMounted")
 })
 
 </script>
@@ -32,7 +31,7 @@ onMounted(() => {
     <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!--<HelloWorld msg="You did it!" />-->
 
       <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
       <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>

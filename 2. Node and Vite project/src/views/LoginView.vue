@@ -46,13 +46,12 @@ const submit = async () => {
     const result = await authService.login(loginForm.username, loginForm.password)
     loading.value = false
 
-    if (!result.isSuccess) {
-      message.value = result.error
+    if (result.isSuccess) {
+      console.log(`login success. ${userStore.isAuthenticated}`)
     }
     else {
-      console.log(`login success. ${userStore.isAuthenticated}`)
-      //const loginResponse = result.value
-      //userStore.login({ isAuthenticated: true, username: loginResponse.username, authToken: loginResponse.authToken })
+      console.error(`Failed to login. ${result.error}`)
+      message.value = result.error
     }
 }
 

@@ -1,3 +1,4 @@
+import { success, type Result } from "../Result"
 import api, { manageError } from "./api"
 
 export interface LoginResponse {
@@ -7,16 +8,14 @@ export interface LoginResponse {
 }
 
 export const UserApi = {
+    login: async (username:string, password:string): Promise<Result<LoginResponse>> => {
+      const params = new URLSearchParams({
+          username: username,
+          password: password
+        })
 
-    login: async (username:string, password:string): Promise<LoginResponse|string> => {
-        const params = new URLSearchParams({
-            username: username,
-            password: password
-          })
-
-        return api.get<LoginResponse>(`/user/login?${params.toString()}`)
-          .then(ok => ok.data )
-          .catch(manageError)
-    }
-
+      return api.get<LoginResponse>(`/user/login?${params.toString()}`)
+        .then(ok => success(ok.data) )
+        .catch(manageError)
+    },
 }

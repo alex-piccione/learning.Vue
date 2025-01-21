@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Configuration from '@/configuration'
 import { addAxiosDateTransformer } from 'axios-date-transformer';
+import { failed } from '../Result';
 
 let api = axios.create({
   baseURL: Configuration.apiUrl,
@@ -18,18 +19,18 @@ export const manageError = (err:Error) => {
     // Extract error message from API JSON esponse
     const { error } = err.response.data;  // error is a field in API JSON response
     if (error === undefined) {
-      console.error('failed to parse API Error:', err.response);
-      return err.message
+      console.error('Failed to parse API Error:', err.response);
+      return failed(err.message)
     }
     else
     {
       console.error('API Error:', error);
-      return error
+      return failed(error)
     }
   } else {
     // Handle other types of errors
     console.error('Error:', err.message);
-    return err.message
+    return failed(err.message)
   }
 }
 
