@@ -1,0 +1,46 @@
+@import "./base.css";
+
+table {    
+    border-collapse: collapse;
+    _line-height: 0.8;
+    _border: solid 1px;        
+    border-radius: var(--border-radius-xs);
+    /*border-color: var(--border-color);   
+    border-bottom-color: var(--border-color-shadow);
+    border-right-color: var(--border-color-shadow);
+    */
+    _border-color: var(--border-color) var(--border-color) var(--border-color-shadow) var(--border-color-shadow);
+}  
+
+
+tr {   
+    background-color: var(--color-background-mute); 
+    border-bottom: solid 2px var(--color-background);
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-background-soft);
+}
+
+td {
+    padding: 0 var(--gap);
+}
+
+
+
+th {
+    /*border-radius: var(--border-radius-xs) var(--border-radius-xs) 0 0  ;*/
+    _color: var(--color-text);
+    color: #333333;
+    font-weight: 600;
+    _background: radial-gradient(ellipse at center, #FF7F50 30%,  #ff571a  100%);    
+    background:  #FF7F50;  
+}
+
+th:first-child {
+    border-radius: var(--border-radius-xs) 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 var(--border-radius-xs) 0 0;
+}

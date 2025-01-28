@@ -1,0 +1,26 @@
+name: Deploy VUE application Docker image
+
+on:
+  push:
+    branches: [main]
+
+env:
+  IMAGE: poc.vue.expenses
+  VERSION: 0.1.${{github.run_number}}
+  SERVICE_PORT: 50300
+
+jobs:
+  docker_image:
+    name: Create Docker image
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: |
+          cd cd 2.\ Node\ and\ Vite\ project
+          docker image build -t $IMAGE --build-arg VERSION=$VERSION --build-arg CONFIGURATION_FILE=$CONFIGURATION_FILE -f ./Dockerfile .
+          docker image inspect $IMAGE | grep Size | awk '{print $2}'
+          #image_size=$(docker image inspect $IMAGE | grep Size | awk '{print $2}')
+          image_size=$(docker image inspect $IMAGE | grep Size | awk '{printf "%.2f MB", $2/1024/1024}')
+          echo "### Docker image size: $image_size" >> $GITHUB_STEP_SUMMARY

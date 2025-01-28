@@ -1,19 +1,52 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted } from 'vue'
+import { getInfo } from './services/API/api'
+import { useUserStore } from './stores/UserStore'
+import AuthService from './services/Auth.service'
+
+const authService = new AuthService()
+const userStore = useUserStore()
+
+const ui_version = import.meta.env.VITE_UI_VERSION
+const api_version = ref<string>("loading")
+
+onMounted(() => {
+  console.log("App.vue - onMounted")
+  getInfo()
+    .then(info => api_version.value = info.version)
+    .catch(err => {
+      api_version.value = "unknown"
+      console.error(`Failed to get API Info. ${err}`)
+    })
+
+  authService.checkAuthentication("onMounted")
+})
+
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!--<HelloWorld msg="You did it!" />-->
+
+      <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
+      <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
+      <div>Hello {{ userStore.username }}</div>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/login" v-if="!userStore.isAuthenticated">Login</RouterLink>
+        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
+          <a @click="authService.logout">Logout</a>
+          </RouterLink>
+        <RouterLink to="/signup">Sign Up</RouterLink>
+        <!--<RouterLink to="/about">About</RouterLink>-->
         <RouterLink to="/counter">Counter</RouterLink>
+        <RouterLink to="/categories">Categories</RouterLink>
       </nav>
     </div>
   </header>

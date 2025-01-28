@@ -9,6 +9,8 @@
   --vt-c-black-mute: #282828;
 
   --vt-c-indigo: #2c3e50;
+  --color-highlight: #FF7F50;
+  
 
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -21,8 +23,17 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
+/* Theme colors */
+:root {
+  
+  --color-main: rgb(#555);
+  --color-alternative: rgb(72, 129, 187);
+  --color-highlight: rgb(#455);
+}
+
 /* semantic color variables for this project */
 :root {
+
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -32,8 +43,35 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-highlight: var(--color-highlight);
+
+  --color-line: var(vt-c-divider-light-1);
+  
+  --color-control: rgb(100,100, 110);
+  --color-control-light: rgb(120, 120, 120);
+  --color-control-dark: rgb(60, 50, 50);
+  --color-control-focus: var(--color-alternative);
+
+  --color-green: rgba(0,180,10,1);
+  --color-green-dark: rgba(0,150,5,1);
 
   --section-gap: 160px;
+}
+
+:root {
+  --gap: 0.5rem;
+  --gap-xs: 0.2rem;
+  --gap-xl: 1rem;  
+}
+
+/* borders */
+:root {
+  --border-radius: 0.5rem;
+  --border-radius-xs: 0.3rem;
+  --border-radius-xl: 1rem;
+
+  --border-color: rgba(200, 200, 200, 0.4);
+  --border-color-shadow:  rgba(200, 200, 200, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,4 +121,13 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.clickable {
+  cursor: pointer;
+}
+
+tr.clickable:hover {
+  border-bottom:1px solid var(--color-highlight);
 }
