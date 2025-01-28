@@ -34,15 +34,15 @@ form .field label {
     min-width: 100px;
     flex: 1 1 100px;
 
-    font-weight: 600;
-    font-size: 1.3rem;
+    font-weight: normal;
+    font-size: 1.1rem;
 }
 
 form .field input {
     color: #555;
     _text-shadow: #77c046 0 2px;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     background: linear-gradient(#c0c0c0 5%, #ddd 30%);
     border: solid 1px #bbb;
     border-radius: 5px;
