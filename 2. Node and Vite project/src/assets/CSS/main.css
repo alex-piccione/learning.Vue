@@ -2,6 +2,7 @@
 @import './table.css';
 @import './controls.css';
 @import './form.css';
+@import './vue-final-modal.css';
 
 #app {
   max-width: 1280px;

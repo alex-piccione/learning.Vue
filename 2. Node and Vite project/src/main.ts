@@ -4,38 +4,28 @@ import App from './App.vue'
 import router from './router'
 import { extendDate } from './extensions/Date.extensions'
 import { createPinia } from 'pinia'
+import { createVfm } from 'vue-final-modal'
+import 'vue-final-modal/style.css' // required by  vue-final-modal 4
 
 const app = createApp(App)
-
-// Version from environment variable
-
 
 app.use(router)
 
 const pinia = createPinia()
 app.use(pinia)
 
+const vfm = createVfm()
+app.use(vfm)
+
 extendDate() // Call the function to extend the Date prototype
 
 app.mount('#app')
 
 
-
-// Define the interface for import.meta.env
-/*
-interface ImportMetaEnv {
-  readonly VITE_UI_VERSION: string;
-  // Add other environment variables here as needed
-}*/
-
+// Get Version from an environment variable
 // Augment the global `import.meta` object
 declare global {
-  /*interface ImportMeta {
-    readonly env: ImportMetaEnv;
-  }*/
-    interface ImportMetaEnv {
-      readonly VITE_UI_VERSION: string | undefined;
-      // Add other environment variables here as needed
-    }
-
+  interface ImportMetaEnv {
+    readonly VITE_UI_VERSION: string | undefined; // VITE_ prefix is mandatory
+  }
 }

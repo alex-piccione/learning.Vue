@@ -1,10 +1,46 @@
+<template>
+  <header>
+    <!-- <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="125" height="125" />-->
+    <div class="wrapper">
+      <!--<HelloWorld msg="You did it!" />-->
+      <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
+      <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
+      <UserState></UserState>
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
+        <RouterLink to="" v-if="!userStore.isAuthenticated">
+          <a @click="openLoginModal">Login</a>
+        </RouterLink>
+        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
+          <a @click="authService.logout">Logout</a>
+          </RouterLink>
+        <RouterLink to="/signup">Sign Up</RouterLink>
+        <!--<RouterLink to="/about">About</RouterLink>-->
+        <!--<RouterLink to="/counter">Counter</RouterLink>-->
+        <RouterLink to="/categories">Categories</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
+
+  <LoginModal></LoginModal>
+  <ModalsContainer />
+
+</template>
+
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue'
+import UserState from './components/UserState.vue'
 import { ref, onMounted } from 'vue'
 import { getInfo } from './services/API/api'
 import { useUserStore } from './stores/UserStore'
 import AuthService from './services/Auth.service'
+import LoginModal from './components/modals/LoginModal.vue'
+import { ModalsContainer, useModal } from 'vue-final-modal'
 
 const authService = new AuthService()
 const userStore = useUserStore()
@@ -24,35 +60,20 @@ onMounted(() => {
   authService.checkAuthentication("onMounted")
 })
 
+const loginModal = useModal({
+  component: LoginModal,
+  attrs: {
+    onClose() { close() }
+  },
+  /*slots: {
+      default: '<p>UseModal: The content of the modal</p>',
+    },*/
+})
+
+const openLoginModal = () => loginModal.open()
+
+
 </script>
-
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <!--<HelloWorld msg="You did it!" />-->
-
-      <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
-      <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
-      <div>Hello {{ userStore.username }}</div>
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login" v-if="!userStore.isAuthenticated">Login</RouterLink>
-        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
-          <a @click="authService.logout">Logout</a>
-          </RouterLink>
-        <RouterLink to="/signup">Sign Up</RouterLink>
-        <!--<RouterLink to="/about">About</RouterLink>-->
-        <RouterLink to="/counter">Counter</RouterLink>
-        <RouterLink to="/categories">Categories</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
-</template>
 
 <style scoped>
 header {

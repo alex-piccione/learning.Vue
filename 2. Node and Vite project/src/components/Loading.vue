@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loading" class="stage">
+    <div v-show="loading" class="stage">
         <div class="text">{{ text || "loading"}}</div>
         <div>
             <div class="dot-flashing"></div>

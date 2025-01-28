@@ -42,3 +42,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+## Packages
+
+- pinia: as store system 
+- vue-final-modal: for modal windows
