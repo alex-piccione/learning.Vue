@@ -40,20 +40,25 @@ form .field label {
 
 form .field input {
     color: #555;
+    color: #eee; /* Light text color for contrast */
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+
     _text-shadow: #77c046 0 2px;
     font-weight: 600;
     font-size: 1.1rem;
-    background: linear-gradient(#c0c0c0 5%, #ddd 30%);
-    border: solid 1px #bbb;
-    border-radius: 5px;
+    /*background: linear-gradient(#c0c0c0 5%, #ddd 30%);*/
+    /*border: solid 1px #bbb;*/
+    border-radius: 3px;
     line-height: 1.8rem;
-    padding: 0 var(--gap);
+    padding: 0 var(--gap);   
     
     flex: 1 2 200px;
 }
 
 form .field input:focus {
-    outline-color: var(--color-control-focus);
+    /*outline-color: var(--color-control-focus);*/
 }
 
 form hr {

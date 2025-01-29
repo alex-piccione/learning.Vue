@@ -83,10 +83,24 @@
 
 /* panels */
 :root {
-  --panel-padding: var(--gap);
-  --panel-background: linear-gradient(15deg, var(--color-background) 15%, var(--color-background-secondary) 85%);
+  --panel-padding: var(--gap-xl);
+  /*--panel-background: linear-gradient(15deg, var(--color-background) 15%, var(--color-background-secondary) 85%);*/
   --panel-border: solid 3px var(--color-border);
   --panel-border-radius: var(--border-radius);  
+
+  --panel-background_old: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
+    rgba(255, 255, 255, 0.1) 20%, /* More subtle highlight */
+    rgba(200, 200, 200, 0.05) 50%, /* Soft transition to base color */
+    rgba(150, 150, 150, 0.02) 80%, /* Even softer transition */
+    rgba(100, 100, 100, 0) 100%); /* Almost transparent at the bottom */
+
+  --panel-background: linear-gradient(135deg, 
+    rgba(200, 220, 255, 0.3) 0%, /* Light blue highlight */
+    rgba(180, 200, 235, 0.1) 20%, /* More subtle blue highlight */
+    rgba(150, 170, 200, 0.05) 50%, /* Soft transition to base color */
+    rgba(120, 140, 170, 0.02) 80%, /* Even softer transition */
+    rgba(100, 120, 150, 0) 100%); /* Almost transparent at the bottom */
 }
 
 @media (prefers-color-scheme: dark) {

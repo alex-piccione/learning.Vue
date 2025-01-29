@@ -2,6 +2,7 @@
 @import './table.css';
 @import './controls.css';
 @import './form.css';
+@import './layout-elements.css';
 @import './vue-final-modal.css';
 
 #app {
