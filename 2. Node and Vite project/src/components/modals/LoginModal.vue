@@ -68,44 +68,45 @@ const clearMessage = () => message.value = null
 
 <style>
 .modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    min-width: 350px;
-    min-height: 300px;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    background: var(--panel-background);
-    padding: var(--panel-padding);
-    border: var(--panel-border);
-    border-radius: var(--panel-border-radius);
-  }
-  .modal-content > * + *{
-    margin: 0.5rem 0;
-  }
-  .modal-content h1 {
-    font-size: 1.375rem;
-  }
-  .modal-content button {
-    margin: 0.25rem 0 0 auto;
-    padding: 0 8px;
-    border: 1px solid;
-    border-radius: 0.5rem;
-  }
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  min-height: 300px;
+  position: relative;
 
-  .dark .modal-content {
-    background: #000;
-  }
+  background: var(--panel-background);
+  padding: var(--panel-padding);
+  border: var(--panel-border);
+  border-radius: var(--panel-border-radius);
+}
+.modal-content > * + *{
+  margin: 0.5rem 0;
+}
+.modal-content h1 {
+  font-size: 1.375rem;
+}
+.modal-content button {
+  margin: 0.25rem 0 0 auto;
+  padding: 0 8px;
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
 
-  .modal-close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+.dark .modal-content {
+  background: #000;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 </style>
 
@@ -132,10 +133,4 @@ label {
     width: 100%;
     display: block;
   }
-
-a:hover {
-  background-color: inherit;
-  cursor: pointer;
-  text-shadow: 0 0 5px rgba(200, 200, 200, .5);
-}
 </style>
