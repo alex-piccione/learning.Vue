@@ -6,9 +6,7 @@
     content-transition="vfm-fade"
     >
       <h1>Login</h1>
-      <a class="modal-close-button" @click="onClose">
-        <svg focusable="false" width="2em" height="2em" viewBox="0 0 24 24" data-v-45f29cbe=""><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z" fill="currentColor"></path></svg>
-      </a>
+      <XButton @click="emit('close')"></XButton>
       <Loading :loading="loading" text="loading..."></Loading>
 
       <form v-show="! loading" @submit.prevent="submit">
@@ -36,40 +34,33 @@
 <script setup lang="ts">
 import AuthService from '@/services/Auth.service'
 import Loading from '@/components/Loading.vue'
-import { useUserStore } from '@/stores/UserStore'
+import XButton from './XButton.vue'
 import { defineEmits, reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
 
-const emit = defineEmits(["close"])
+const emit = defineEmits(["close", "test"])
 
 const loading = ref(false)
 const message = ref<string|null>(null)
-
-const switchVisibility = () => loading.value = !loading.value
+//const switchVisibility = () => loading.value = !loading.value
 
 const loginForm = reactive({username:"", password:""})
-
-const userStore = useUserStore()
-
 const authService = new AuthService()
 
 const submit = async () => {
-    loading.value = true
-    const result = await authService.login(loginForm.username, loginForm.password)
-    loading.value = false
+  loading.value = true
+  const result = await authService.login(loginForm.username, loginForm.password)
+  loading.value = false
 
-    if (result.isSuccess) {
-      console.log(`login success. ${userStore.isAuthenticated}`)
-      close()
-      //emit("close")
-    }
-    else {
-      console.error(`Failed to login. ${result.error}`)
-      message.value = result.error
-    }
+  if (result.isSuccess) {
+    close()
+    //emit("close")
+  }
+  else {
+    console.error(`Failed to login. ${result.error}`)
+    message.value = result.error
+  }
 }
-
-const onClose = () => close()
 
 const clearMessage = () => message.value = null
 

@@ -63,14 +63,15 @@ onMounted(() => {
 const loginModal = useModal({
   component: LoginModal,
   attrs: {
-    onClose() { close() }
+    onClose() { closeLoginModal()},
   },
   /*slots: {
       default: '<p>UseModal: The content of the modal</p>',
-    },*/
+  },*/
 })
 
 const openLoginModal = () => loginModal.open()
+const closeLoginModal = () => loginModal.close()
 
 
 </script>
