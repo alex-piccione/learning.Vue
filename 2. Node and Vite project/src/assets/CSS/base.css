@@ -1,8 +1,8 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  /*--vt-c-white: #ffffff;*/
+  /*--vt-c-white-soft: #f8f8f8;*/
+  /*--vt-c-white-mute: #f2f2f2;*/
 
   --vt-c-black: #181818;
   --vt-c-black-soft: #222222;
@@ -19,7 +19,7 @@
 
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
+  /*--vt-c-text-dark-1: var(--vt-c-white);*/
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
@@ -34,6 +34,16 @@
 
   --color-background: rgba(50, 50, 50, .9);
   --color-background-secondary: rgba(40, 40, 40, .9);
+
+
+  /* buttons */
+  --color-submit: var(--color-alternative);  
+  --color-ok: #77c046;
+  --color-ok_2: rgb(0,180,10);
+  
+  --color-cancel: var(--color-main);  
+  --color-error: #E62C03;
+  --color-error-dark: rgb(180, 10 ,0);
 }
 
 /* semantic color variables for this project */
@@ -46,9 +56,9 @@
   --color-border-hover: var(--vt-c-divider-light-1);
   --color-border-dark: var(--vt-c-divider-dark-2);
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-  --color-text-highlight: var(--color-highlight);
+  --color-heading: #f0f0f0;
+  --color-text: #d0d0d0;
+  --color-text-highlight: var(--color-alternative);
 
   --color-line: var(vt-c-divider-light-1);
   
@@ -57,8 +67,15 @@
   --color-control-dark: rgb(60, 50, 50);
   --color-control-focus: var(--color-alternative);
 
-  --color-green: rgba(0,180,10,1);
-  --color-green-dark: rgba(0,150,5,1);
+  --color-shadow-hover: rgba(220, 220, 220, .7);
+
+  /*--color-green: rgba(0,180,10,1);*/
+  /*--color-green-dark: rgba(0,150,5,1);*/
+  --color-green: #1a2a6c;
+  --color-green-dark: #0b1641;  
+
+  /* dark theme */
+  --color-text-dark: var(--color-text) 
 
   --section-gap: 160px;
 }
@@ -112,7 +129,7 @@
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
 
-    --color-heading: var(--vt-c-text-dark-1);
+    --color-heading: var(--color-text-dark);
     --color-text: var(--vt-c-text-dark-2);
   }
 }
@@ -128,7 +145,12 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  /*background: var(--color-background);*/
+  background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+  background: linear-gradient(to bottom, #1a2a6c, #4f0082, #6f009e); /* Darker blues and purples */
+  background: linear-gradient(to bottom, #1e3c72, #2a5298, #3669b3); /* Softer blues */  
+  background-size: cover;
+  background-attachment: fixed;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -151,7 +173,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 .clickable {
   cursor: pointer;

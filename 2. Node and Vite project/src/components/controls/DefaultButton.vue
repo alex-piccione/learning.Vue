@@ -20,11 +20,9 @@
 </template>
 
 <style scoped>
-    /*@import "../../assets/base.css";*/
     @import "../../assets/CSS/base.css";
 
     .button {
-        _color: var(--vt-c-white);
         color: var(--color-text);
         display: inline-block;
         font-weight: bold;

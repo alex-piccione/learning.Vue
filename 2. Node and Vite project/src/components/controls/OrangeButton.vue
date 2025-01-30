@@ -16,7 +16,6 @@
         cursor: pointer;
         background-color: #FF7F50;
         border-radius: 5px;
-        _color: var(--vt-c-white);
         color: var(--color-text);
         display: inline-block;
         font-weight: bold;

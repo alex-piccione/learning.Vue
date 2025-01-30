@@ -16,4 +16,8 @@
     right: 5px;
     cursor: pointer;
   }
+
+  .modal-close-button:hover {
+    box-shadow: 0 0 5px var(--color-shadow-hover);
+  }
 </style>

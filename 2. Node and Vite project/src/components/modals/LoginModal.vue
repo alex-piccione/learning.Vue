@@ -37,7 +37,7 @@ import Loading from '@/components/Loading.vue'
 import XButton from './XButton.vue'
 import { defineEmits, reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
-import { useUserStore } from '@/stores/UserStore'
+/*import { useUserStore } from '@/stores/UserStore'*/
 
 const emit = defineEmits(["close", "test"])
 
@@ -90,13 +90,13 @@ const clearMessage = () => message.value = null
   margin: 0.5rem 0;
 }
 .modal-content h1 {
-  font-size: 1.375rem;
+  font-size: 1.3rem;
 }
 .modal-content button {
   margin: 0.25rem 0 0 auto;
-  padding: 0 8px;
+  /*padding: 0 8px;
   border: 1px solid;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem;*/
 }
 
 .dark .modal-content {

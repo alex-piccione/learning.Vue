@@ -68,7 +68,7 @@ form hr {
 form button {
     line-height: 1.8rem;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
     border-radius: 5px;
     _box-shadow: rgba(150,150,150, 0.8) 0 2px 4px;
@@ -91,6 +91,7 @@ form button:hover {
 }
 
 form button[type="submit"] {
-    background: linear-gradient(var(--color-green) 5%, var(--color-green-dark) 30%);
+    _background: linear-gradient(var(--color-ok) 5%, var(--color-green-dark) 30%);
+    background-color: var(--color-ok);
     font-weight: 600;
 }
