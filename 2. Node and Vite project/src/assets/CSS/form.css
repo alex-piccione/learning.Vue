@@ -42,13 +42,14 @@ form .field input {
     color: #555;
     color: #eee; /* Light text color for contrast */
     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    background: linear-gradient(#ddd3 5%, #c0c0c055 55%, #ddd3 58%);    
+    /*background: linear-gradient(#c0c0c0 5%, #ddd 30%);   inset   */
+    border: 1px solid rgba(180, 180, 180, 0.3); /* Subtle white border */
     transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
 
     _text-shadow: #77c046 0 2px;
-    font-weight: 600;
     font-size: 1.1rem;
-    /*background: linear-gradient(#c0c0c0 5%, #ddd 30%);*/
+    
     /*border: solid 1px #bbb;*/
     border-radius: 3px;
     line-height: 1.8rem;
@@ -66,17 +67,14 @@ form hr {
 }
 
 form button {
-    line-height: 1.8rem;
+    line-height: 2rem;
     font-weight: 500;
     font-size: 1.2rem;
-
-    border-radius: 5px;
-    _box-shadow: rgba(150,150,150, 0.8) 0 2px 4px;
-
-    background-image: linear-gradient(-180deg var(--color-control-light), var(--color-control));
-    background: linear-gradient(var(--color-control-light) 5%, var(--color-control) 30%);
+    
+    /*background-image: linear-gradient(-135deg var(--color-control-light), var(--color-control));*/
+    /*background: linear-gradient(var(--color-control-light) 5%, var(--color-control) 30%);*/
     _background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
-    transition: box-shadow .2s;
+    /*transition: box-shadow .2s;*/
 
     padding: 0 var(--gap-xl);
     margin: 0 var(--gap-xl);
@@ -84,14 +82,16 @@ form button {
     cursor: pointer;
     touch-action: manipulation;
 }
-
+/*
 form button:hover {
     _box-shadow: rgba(150,150,150, 0.8) 0 4px 8px;
     box-shadow: rgba(150,150,150, 0.8) 0 0 14px;
-}
+}*/
 
 form button[type="submit"] {
-    _background: linear-gradient(var(--color-ok) 5%, var(--color-green-dark) 30%);
-    background-color: var(--color-ok);
+    color: #333;
+    background: var(--color-ok);
     font-weight: 600;
+    border-radius: var(--border-radius);
+    border-radius: 3px;
 }

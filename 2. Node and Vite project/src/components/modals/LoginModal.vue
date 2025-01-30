@@ -10,22 +10,22 @@
       <Loading :loading="loading" text="loading..."></Loading>
 
       <form v-show="! loading" @submit.prevent="submit">
-          <div class="field">
-              <label for="user">User</label>
-              <input id="user" @input="clearMessage" v-model="loginForm.username" autocomplete="off" />
-          </div>
-          <div class="field">
-              <label for="password">Password</label>
-              <input id="password" type="password" @input="clearMessage" v-model="loginForm.password" autocomplete="off" />
-          </div>
+        <div class="field">
+          <label for="user">User</label>
+          <input id="user" @input="clearMessage" v-model="loginForm.username" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" @input="clearMessage" v-model="loginForm.password" autocomplete="off" />
+        </div>
 
-          <div class="buttons">
-              <button type="submit">Login</button>
-          </div>
+        <div class="buttons">
+          <button type="submit">Login</button>
+        </div>
 
-          <div v-show="message" style="margin-top: 5px">
-              <div class="error">{{ message }}</div>
-          </div>
+        <div v-show="message" style="margin-top: 5px">
+          <div class="error">{{ message }}</div>
+        </div>
       </form>
 
     </VueFinalModal>
@@ -78,13 +78,16 @@ const clearMessage = () => message.value = null
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  min-height: 300px;
+  min-height: 330px;
   position: relative;
 
   background: var(--panel-background);
   padding: var(--panel-padding);
   border: var(--panel-border);
   border-radius: var(--panel-border-radius);
+
+  _box-shadow: rgba(150,150,150, 0.8) 0 -2px 4px;
+  box-shadow: rgba(50, 50, 80, 0.7) 0 2px 4px;
 }
 .modal-content > * + *{
   margin: 0.5rem 0;
@@ -93,10 +96,7 @@ const clearMessage = () => message.value = null
   font-size: 1.3rem;
 }
 .modal-content button {
-  margin: 0.25rem 0 0 auto;
-  /*padding: 0 8px;
-  border: 1px solid;
-  border-radius: 0.5rem;*/
+  margin: 0.3rem 0 0 auto;
 }
 
 .dark .modal-content {

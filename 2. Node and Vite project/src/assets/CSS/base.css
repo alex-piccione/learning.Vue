@@ -90,9 +90,9 @@
 /* borders */
 :root {
   /*--radius:*/
-  --border-radius: 0.5rem;
-  --border-radius-xs: 0.3rem;
-  --border-radius-xl: 1rem;
+  --border-radius: 0.2rem;
+  --border-radius-xs: 0.1rem;
+  --border-radius-xl: 0.4rem;
 
   --border-color: rgba(200, 200, 200, 0.4);
   --border-color-shadow:  rgba(200, 200, 200, 0.1);
@@ -103,7 +103,7 @@
   --panel-padding: var(--gap-xl);
   /*--panel-background: linear-gradient(15deg, var(--color-background) 15%, var(--color-background-secondary) 85%);*/
   --panel-border: solid 3px var(--color-border);
-  --panel-border-radius: var(--border-radius);  
+  --panel-border-radius: var(--border-radius-xl);  
 
   --panel-background_old: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
