@@ -39,3 +39,12 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 - pinia: as store system 
 - vue-final-modal: for modal windows
+
+
+## UI Style
+
+Inspiration from:
+- https://stellarchain.io/ledgers
+- https://www.perplexity.ai/
+- https://etherscan.io/tx/0x7712f3ac3db9cefcf3540d8c2a873cd440d29bf09c5eeed451fc5d53d59082ac#statechange
+

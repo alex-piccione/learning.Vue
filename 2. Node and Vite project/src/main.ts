@@ -21,7 +21,6 @@ extendDate() // Call the function to extend the Date prototype
 
 app.mount('#app')
 
-
 // Get Version from an environment variable
 // Augment the global `import.meta` object
 declare global {

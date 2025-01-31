@@ -1,3 +1,7 @@
+form {
+    /*transition: background-color 0.8s ease, border-color 0.8s ease;*/ /* Smooth transitions */
+}
+
 .form-field {
     padding: 0 var(--gap);
     min-width: 50px;
@@ -39,19 +43,20 @@ form .field label {
 }
 
 form .field input {
-    color: #555;
-    color: #eee; /* Light text color for contrast */
+    /*color: #555;*/
+    color: #eef; /* Light text color for contrast */
     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
     background: linear-gradient(#ddd3 5%, #c0c0c055 55%, #ddd3 58%);    
     /*background: linear-gradient(#c0c0c0 5%, #ddd 30%);   inset   */
     border: 1px solid rgba(180, 180, 180, 0.3); /* Subtle white border */
+    border: none;
     transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
 
     _text-shadow: #77c046 0 2px;
     font-size: 1.1rem;
     
     /*border: solid 1px #bbb;*/
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     line-height: 1.8rem;
     padding: 0 var(--gap);   
     
@@ -66,10 +71,17 @@ form hr {
     margin: var(--gap-xl) 0;
 }
 
+form .buttons {
+    margin-top: var(--gap-xl);
+    border-top: 1px solid rgba(200, 200, 200, .5);
+    /*padding-top: var(--gap);*/
+    padding: var(--gap);
+}
+
 form button {
     line-height: 2rem;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     
     /*background-image: linear-gradient(-135deg var(--color-control-light), var(--color-control));*/
     /*background: linear-gradient(var(--color-control-light) 5%, var(--color-control) 30%);*/
@@ -78,10 +90,13 @@ form button {
 
     padding: 0 var(--gap-xl);
     margin: 0 var(--gap-xl);
+    margin-inline-start: 0;
+    margin-inline-end: var(--gap-xl);
 
     cursor: pointer;
     touch-action: manipulation;
 }
+
 /*
 form button:hover {
     _box-shadow: rgba(150,150,150, 0.8) 0 4px 8px;
@@ -89,9 +104,25 @@ form button:hover {
 }*/
 
 form button[type="submit"] {
-    color: #333;
+    color: #445;
+    /*color: var(--color-text);*/
     background: var(--color-ok);
     font-weight: 600;
+    border: none;
     border-radius: var(--border-radius);
-    border-radius: 3px;
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--color-ok-hover);
+  }
+
+form .error {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--color-error);
+    padding: var(--gap);
+    background: linear-gradient(#e0e0e0a0, #e9e9e9d0, #e0e0e0a0);
+    
+    border-radius: var(--border-radius);
+    transition: ease-in 1s;
 }

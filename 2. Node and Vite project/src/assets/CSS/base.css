@@ -39,6 +39,7 @@
   /* buttons */
   --color-submit: var(--color-alternative);  
   --color-ok: #77c046;
+  --color-ok-hover: #6bac40;
   --color-ok_2: rgb(0,180,10);
   
   --color-cancel: var(--color-main);  
@@ -57,7 +58,8 @@
   --color-border-dark: var(--vt-c-divider-dark-2);
 
   --color-heading: #f0f0f0;
-  --color-text: #d0d0d0;
+  /*--color-text: #d0d0d0; #e3f901*/
+  --color-text: #e3e9f1;
   --color-text-highlight: var(--color-alternative);
 
   --color-line: var(vt-c-divider-light-1);
@@ -102,7 +104,7 @@
 :root {
   --panel-padding: var(--gap-xl);
   /*--panel-background: linear-gradient(15deg, var(--color-background) 15%, var(--color-background-secondary) 85%);*/
-  --panel-border: solid 3px var(--color-border);
+  --panel-border: solid 2px var(--color-border);
   --panel-border-radius: var(--border-radius-xl);  
 
   --panel-background_old: linear-gradient(135deg, 
@@ -168,7 +170,8 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 15px;
+  _font-size: 15px;
+  font-size: 0.9rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

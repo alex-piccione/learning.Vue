@@ -46,6 +46,7 @@ import { useUserStore } from './stores/UserStore'
 import AuthService from './services/Auth.service'
 import LoginModal from './components/modals/LoginModal.vue'
 import { ModalsContainer, useModal } from 'vue-final-modal'
+import router from './router'
 
 const authService = new AuthService()
 const userStore = useUserStore()

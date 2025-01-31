@@ -40,4 +40,6 @@ const router = createRouter({
   ],
 })
 
+export const redicrectToHome = () => router.replace("/")
+
 export default router
