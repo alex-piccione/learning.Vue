@@ -1,8 +1,10 @@
 <template>
     <div class="panel">
     <h1>Sign Up</h1>
-    <Loading :loading="loading" text="loading..."></Loading>
-    <form v-show="! loading" @submit.prevent="submit" autocomplete="off">
+    <div style="display: none;">
+      <Loading :loading="loading" text="loading..."></Loading>
+    </div>
+    <form _v-show="! loading" :class="{ loading: loading }"  @submit.prevent="submit" autocomplete="off">
         <div class="field">
             <label for="email" class="mandatory" autocomplete="email">Email</label>
             <input id="email" type="text" v-model="formData.email"  @input="clearMessage"/>
@@ -20,11 +22,11 @@
             <input id="passwordRepeat" type="password" v-model="formData.passwordRepeat"  @input="clearMessage"/>
         </div>
         <div class="buttons">
-          <button type="submit">Login</button>
+          <button type="submit">Sign up</button>
         </div>
-        <div v-show="message" style="margin-top: 5px">
-        <div class="error">{{ message }}</div>
-    </div>
+        <div style="margin-top: 5px; ">
+          <div class="error" :class="{ hidden: message == ' ' }">{{ message }}</div>
+        </div>
     </form>
 </div>
 </template>
@@ -37,7 +39,7 @@ import { reactive, ref } from 'vue';
 //const emit = defineEmits(["close"])
 
 const loading = ref(false)
-const message = ref<string|null>(null)
+const message = ref<string|null>(" ")
 
 const userService = new UserService()
 
@@ -46,7 +48,7 @@ const formData = reactive({
 })
 
 const submit = async () => {
-  message.value = null
+  message.value = " "
   loading.value = true
 
   const request:CreateRequest = {
@@ -68,7 +70,7 @@ const submit = async () => {
   }
 }
 
-const clearMessage = () => message.value = null
+const clearMessage = () => message.value = " "
 
 function redirectToHome() {
     throw new Error('Function not implemented.');

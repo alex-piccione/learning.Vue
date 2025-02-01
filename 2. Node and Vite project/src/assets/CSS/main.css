@@ -12,20 +12,40 @@
   font-weight: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
+a, .green {
+    text-decoration: none;
+    /*color: hsla(160, 100%, 37%, 1);*/
+    color: var(--color-ok);
+    transition: 0.4s;
+    padding: var(--gap);
+  }
 
 .error {
   font-weight: 600;
-  color: rgb(255, 17, 17);
-  transition: 0.4s;
-  padding: 3px;
+  color: var(--color-error); /* rgb(255, 17, 17); */
+  transition: var(--transition);
+  padding: var(--gap);
+  white-space: pre-wrap; /* maintain size if text is white space */
 }
+
+/*.hidden {
+  opacity: 0; 
+}*/
+
+.hidden {  
+  opacity: 0; /* Initially visible */
+  transition: opacity 0.3s ease; /* Transition for opacity */   
+}
+
+.loading {  
+  opacity: 0.3; /* Initially visible */
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease; /* Transition for opacity */ 
+  transition: backdrop-filter 0.3s ease; /* Transition for  backdrop-filter */ 
+}
+
+/*.visible { visibility: visible; }*/
+/*.hidden { visibility: hidden; }*/
 
 @media (hover: hover) {
   a:hover {

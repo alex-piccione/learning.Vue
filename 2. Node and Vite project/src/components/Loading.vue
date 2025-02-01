@@ -1,10 +1,13 @@
 <template>
-    <div v-show="loading" class="stage">
+  <!-- v-show="loading" -->
+   <div v-show="loading" :class="loading ? 'visible_':'hidden_'" style="position:a absolute; height: 100%">
+    <div class="stage">
         <div class="text">{{ text || "loading"}}</div>
         <div>
             <div class="dot-flashing"></div>
         </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -27,6 +30,7 @@ defineProps<{
     padding: 32px 0;
     margin: 0 -5%;
     overflow: hidden;
+    transform: var(--transition);
 }
 
 .text {
@@ -82,16 +86,6 @@ defineProps<{
     background-color: rgba(152, 128, 255, 0.2);
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

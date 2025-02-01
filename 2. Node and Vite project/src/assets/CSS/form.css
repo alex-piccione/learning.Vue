@@ -1,5 +1,6 @@
 form {
     /*transition: background-color 0.8s ease, border-color 0.8s ease;*/ /* Smooth transitions */
+    transition: var(--transition);
 }
 
 .form-field {
@@ -46,11 +47,11 @@ form .field input {
     /*color: #555;*/
     color: #eef; /* Light text color for contrast */
     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
-    background: linear-gradient(#ddd3 5%, #c0c0c055 55%, #ddd3 58%);    
+    background: linear-gradient(#ddd3 5%, #c0c0c055 55%, #ddd3 58%); 
     /*background: linear-gradient(#c0c0c0 5%, #ddd 30%);   inset   */
     border: 1px solid rgba(180, 180, 180, 0.3); /* Subtle white border */
     border: none;
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+    transition: var(--transtition);
 
     _text-shadow: #77c046 0 2px;
     font-size: 1.1rem;
@@ -65,6 +66,9 @@ form .field input {
 
 form .field input:focus {
     /*outline-color: var(--color-control-focus);*/
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    /*border: 1px solid rgba(150, 150, 150, 0.2);*/
 }
 
 form hr {
@@ -106,6 +110,7 @@ form button:hover {
 form button[type="submit"] {
     color: #445;
     /*color: var(--color-text);*/
+    /*background: var(--color-ok);*/
     background: var(--color-ok);
     font-weight: 600;
     border: none;
@@ -113,8 +118,9 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: var(--color-ok-hover);
-  }
+    color: #334;
+    background: var(--color-ok-hover);
+}
 
 form .error {
     font-size: 1.2rem;
@@ -122,7 +128,8 @@ form .error {
     color: var(--color-error);
     padding: var(--gap);
     background: linear-gradient(#e0e0e0a0, #e9e9e9d0, #e0e0e0a0);
+    box-shadow: #e9e9e9e0 0 0 5px;
     
     border-radius: var(--border-radius);
-    transition: ease-in 1s;
+    transition: ease-in .5s;
 }

@@ -17,7 +17,14 @@
     cursor: pointer;
   }
 
+  .modal-close-button:active {
+    background: linear-gradient(140deg, #e0e0e080, #f0f0f020 , #efefef30);
+    border-radius: var(--border-radius);
+  }
+
   .modal-close-button:hover {
-    box-shadow: 0 0 5px var(--color-shadow-hover);
+    /*box-shadow: 0 0 5px var(--color-shadow-hover);*/
+    border: solid 1px #d0d0d070;
+    border-radius: var(--border-radius);
   }
 </style>
