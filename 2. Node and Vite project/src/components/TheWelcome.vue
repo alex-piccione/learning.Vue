@@ -10,6 +10,20 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
 </script>
 
 <template>
+
+  <p>
+    This website allows you to manage your expense.<br />
+    You can add, edit, delete, and view your expenses associating them to a precise category.
+  </p>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <template #heading>Documentation</template>
+
+  </WelcomeItem>
+
   <WelcomeItem>
     <template #icon>
       <DocumentationIcon />

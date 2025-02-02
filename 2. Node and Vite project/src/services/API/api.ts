@@ -2,6 +2,7 @@ import axios from 'axios'
 import Configuration from '@/configuration'
 import { addAxiosDateTransformer } from 'axios-date-transformer';
 import { failed } from '../Result';
+import CookieService from '../Cookies.service';
 
 let api = axios.create({
   baseURL: Configuration.apiUrl,
@@ -32,6 +33,21 @@ export const manageError = (err:Error) => {
     console.error('Error:', err.message);
     return failed(err.message)
   }
+}
+
+export function extendApi() {
+  api.interceptors.request.use(
+    request => {
+      const authToken =  CookieService.readCookie("AuthToken")
+      authToken &&  (request.headers["X-Auth-Token"] = `Bearer ${authToken}`)
+      return request
+    }
+  )
+
+  /*api.interceptors.response.use(
+    response => response,
+    error => Promise.reject(manageError(error))
+  )*/
 }
 
 

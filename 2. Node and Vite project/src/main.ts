@@ -3,9 +3,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { extendDate } from './extensions/Date.extensions'
+import { extendApi } from './services/API/api'
 import { createPinia } from 'pinia'
 import { createVfm } from 'vue-final-modal'
 import 'vue-final-modal/style.css' // required by  vue-final-modal 4
+
 
 const app = createApp(App)
 
@@ -17,6 +19,7 @@ app.use(pinia)
 const vfm = createVfm()
 app.use(vfm)
 
+extendApi() // Call the function to extend the API
 extendDate() // Call the function to extend the Date prototype
 
 app.mount('#app')
