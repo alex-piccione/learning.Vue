@@ -4,14 +4,14 @@
       <div>Hello {{ userStore.username }}</div>
     </template>
     <template v-else>
-    <div>NOT isAuthenticated</div>
+    <div>Please Sign Up to create a user or Login if you already have one.</div>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores/UserStore'
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 const userStore = useUserStore()
 const isAuthenticated = ref(userStore.isAuthenticated)

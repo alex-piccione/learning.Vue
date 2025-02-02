@@ -3,19 +3,19 @@
     <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="400px"  />
     <div class="wrapper">
       <!--<HelloWorld msg="You did it!" />-->
-
       <UserState></UserState>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
+        <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
         <RouterLink to="" v-if="!userStore.isAuthenticated">
           <a @click="openLoginModal">Login</a>
         </RouterLink>
         <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
           <a @click="authService.logout">Logout</a>
-          </RouterLink>
-        <RouterLink to="/signup">Sign Up</RouterLink>
+        </RouterLink>
+
         <!--<RouterLink to="/about">About</RouterLink>-->
         <!--<RouterLink to="/counter">Counter</RouterLink>-->
         <RouterLink to="/categories">Categories</RouterLink>
@@ -46,7 +46,6 @@ import { useUserStore } from './stores/UserStore'
 import AuthService from './services/Auth.service'
 import LoginModal from './components/modals/LoginModal.vue'
 import { ModalsContainer, useModal } from 'vue-final-modal'
-import router from './router'
 
 const authService = new AuthService()
 const userStore = useUserStore()

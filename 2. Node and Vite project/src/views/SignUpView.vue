@@ -76,16 +76,3 @@ function redirectToHome() {
     throw new Error('Function not implemented.');
 }
 </script>
-
-<style scoped>
-.button-submit__ {
-    background-color: #4CAF50; /* Green color */
-  color: white; /* White text */
-  padding: 12px 24px; /* Padding */
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth color transition on hover */
-}
-</style>

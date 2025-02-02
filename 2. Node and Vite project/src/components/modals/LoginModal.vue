@@ -4,6 +4,7 @@
     content-class="modal-content panel"
     overlay-transition="vfm-fade"
     content-transition="vfm-fade"
+    @opened="onOpen"
     >
       <h1>Login</h1>
       <XButton @click="emit('close')"></XButton>
@@ -12,7 +13,7 @@
       <form v-show="! loading" @submit.prevent="submit">
         <div class="field">
           <label for="user">User</label>
-          <input id="user" @input="clearMessage" v-model="loginForm.username" autocomplete="off" />
+          <input id="user" @input="clearMessage" v-model="loginForm.username" autocomplete="off" ref="inputUser" />
         </div>
         <div class="field">
           <label for="password">Password</label>
@@ -37,7 +38,6 @@ import Loading from '@/components/Loading.vue'
 import XButton from './XButton.vue'
 import { defineEmits, reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
-/*import { useUserStore } from '@/stores/UserStore'*/
 
 const emit = defineEmits(["close", "test"])
 
@@ -47,6 +47,9 @@ const message = ref<string|null>(null)
 
 const loginForm = reactive({username:"", password:""})
 const authService = new AuthService()
+
+const inputUser = ref<HTMLInputElement|null>(null) // name should match the "ref" property on the element
+const onOpen = () => inputUser.value?.focus()  // /*alert(this.$refs.input_user)*/
 
 const submit = async () => {
   message.value = null
@@ -62,6 +65,8 @@ const submit = async () => {
     message.value = result.error
   }
 }
+
+const vFocus = (el: HTMLElement) => {alert(123); el.focus() }
 
 const clearMessage = () => message.value = null
 
