@@ -38,8 +38,9 @@ export const manageError = (err:Error) => {
 export function extendApi() {
   api.interceptors.request.use(
     request => {
-      const authToken =  CookieService.readCookie("AuthToken")
-      authToken &&  (request.headers["X-Auth-Token"] = `Bearer ${authToken}`)
+      const authToken = CookieService.readCookie("AuthToken")
+      console.log(`AuthToken cookie: ${authToken}`)
+      authToken &&  (request.headers["X-Auth-Token"] = authToken)
       return request
     }
   )

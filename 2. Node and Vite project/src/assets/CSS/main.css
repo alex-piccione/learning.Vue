@@ -44,6 +44,14 @@ a, .green {
   transition: backdrop-filter 0.3s ease; /* Transition for  backdrop-filter */ 
 }
 
+.page-title {
+  font-size: 1.5rem;
+  color: var(--color-text-highlight);
+  border-bottom: solid 1px var(--color-text-alternative);
+  font-weight: 600;
+  margin-bottom: var(--gap);
+}
+
 /*.visible { visibility: visible; }*/
 /*.hidden { visibility: hidden; }*/
 

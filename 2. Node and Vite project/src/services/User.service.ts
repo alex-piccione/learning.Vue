@@ -3,7 +3,7 @@ import { failed, success, type Result } from "./Result";
 
 const date = new Date
 
-export interface CreateRequest { 
+export interface CreateRequest {
     email:string
     username:string | null
     password: string
@@ -24,7 +24,7 @@ class UserService {
             username: request.username?.trim() || null,
             password: request.password.trim()
             })
-            .then(ok => ok)
+            .then(result => result)
             .catch(error => error)
     }
 }

@@ -20,20 +20,20 @@
         <!--<RouterLink to="/counter">Counter</RouterLink>-->
         <RouterLink to="/categories">Categories</RouterLink>
       </nav>
-
-      <div class="app-version">
-        <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
-        <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
-      </div>
-
     </div>
   </header>
 
-  <RouterView />
+  <div>
+    <RouterView />
+  </div>
+
+  <div class="app-version">
+    <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
+    <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
+  </div>
 
   <LoginModal></LoginModal>
   <ModalsContainer />
-
 </template>
 
 <script setup lang="ts">
@@ -125,7 +125,7 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
   header {
-    display: flex;
+    /*display: flex;*/
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
