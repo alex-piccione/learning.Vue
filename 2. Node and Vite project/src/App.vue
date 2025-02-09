@@ -23,7 +23,7 @@
     </div>
   </header>
 
-  <div>
+  <div class="panel">
     <RouterView />
   </div>
 

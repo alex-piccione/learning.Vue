@@ -4,7 +4,7 @@
 
   <template v-if="error == null">
     <div v-if="viewType === View.List">
-      <TextButton text="Create new" @click="setView(View.New)"></TextButton>
+      <TextButton text="Create new" @click="() => setView(View.New)"></TextButton>
       <CategoriesTable v-if="categories" :categories=categories :select="select" ></CategoriesTable>
       <div class="button-row">
           <OrangeButton text="New" @Click="() => setView(View.New)"></OrangeButton>
@@ -67,7 +67,6 @@ onMounted(() => {
         error.value = result.error
       }
   })
-
 })
 
 
@@ -76,7 +75,7 @@ const select = (id:number) =>
 {
   if (categories == null) return;
 
-  const sel = categories.find(c => c.Id === id)
+  const sel = categories.find(c => c.id === id)
   if (sel !== undefined)
       selectedCategory.value = sel
 

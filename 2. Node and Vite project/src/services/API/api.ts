@@ -18,7 +18,14 @@ api = addAxiosDateTransformer(api);
 export const manageError = (err:Error) => {
   if (axios.isAxiosError(err) && err.response) {
     // Extract error message from API JSON esponse
-    const { error } = err.response.data;  // error is a field in API JSON response
+    const { error, code } = err.response.data;  // "error" and "code" are fields of the API JSON response
+
+    if (code === "EXPIRED_AUTH_TOKEN")
+    {
+      console.error('Auth token is expired');
+      return failed(err.message)
+    }
+
     if (error === undefined) {
       console.error('Failed to parse API Error:', err.response);
       return failed(err.message)
@@ -36,6 +43,7 @@ export const manageError = (err:Error) => {
 }
 
 export function extendApi() {
+  // add the Authentication token to the request
   api.interceptors.request.use(
     request => {
       const authToken = CookieService.readCookie("AuthToken")
@@ -44,11 +52,20 @@ export function extendApi() {
       return request
     }
   )
-
-  /*api.interceptors.response.use(
+/*
+  api.interceptors.response.use(
     response => response,
-    error => Promise.reject(manageError(error))
-  )*/
+    error => {
+      if (axios.isAxiosError(error)) {
+      }
+      else {
+        console.log(`API response error. ${error}`)
+      }
+      return error
+    }
+    //error => Promise.reject(manageError(error))
+  )
+  */
 }
 
 

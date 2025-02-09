@@ -66,7 +66,7 @@ const submit = async () => {
   }
 }
 
-const vFocus = (el: HTMLElement) => {alert(123); el.focus() }
+//const vFocus = (el: HTMLElement) => {alert(123); el.focus() }
 
 const clearMessage = () => message.value = null
 

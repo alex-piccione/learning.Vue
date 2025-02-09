@@ -6,3 +6,10 @@
 defineProps<{error: string|null}>()
 
 </script>
+
+<style scoped>
+.error {
+  /*margin*/
+}
+
+</style>

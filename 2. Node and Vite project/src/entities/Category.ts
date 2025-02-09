@@ -1,8 +1,8 @@
 export default interface Category {
-    Id: number
-    Name: string
-    Description: string
-    CreatedAt: Date
+    id: number
+    name: string
+    description: string
+    createdAt: Date
 }
 
 /*
