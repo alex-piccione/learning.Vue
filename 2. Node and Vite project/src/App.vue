@@ -9,6 +9,7 @@
         <RouterLink to="/">Home</RouterLink>
         <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
         <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
+        <RouterLink to="/signup" v-if="!isAuthenticated">Sign Up 2</RouterLink>
         <RouterLink to="" v-if="!userStore.isAuthenticated">
           <a @click="openLoginModal">Login</a>
         </RouterLink>
@@ -49,6 +50,8 @@ import { ModalsContainer, useModal } from 'vue-final-modal'
 
 const authService = new AuthService()
 const userStore = useUserStore()
+
+const isAuthenticated = ref(userStore.isAuthenticated)
 
 const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>("loading")

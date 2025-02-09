@@ -5,14 +5,15 @@
         onClick:(event: MouseEvent) => void
     }>()
 
-    type Kind = "Generic" | "Create" | "Cancel" | "Delete"
+    type Kind = "Generic" | "New" | "Create" | "Cancel" | "Delete"
 
     const buttonText = (kind:Kind, text?:string,) => text || (kind === "Generic" ? "text property is missing" : kind)
     const buttonClass = (kind:Kind) =>
-        kind === "Create" ? "button-create" :
-        kind === "Cancel" ? "button-cancel" :
-        kind === "Delete" ? "button-delete" :
-        ""
+      kind === "New" ? "button-new" :
+      kind === "Create" ? "button-create" :
+      kind === "Cancel" ? "button-cancel" :
+      kind === "Delete" ? "button-delete" :
+      ""
 </script>
 
 <template>

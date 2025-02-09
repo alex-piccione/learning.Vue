@@ -12,6 +12,9 @@ export default class CategoryService {
 
     list = async ():Promise<Result<Category[]>> =>
       await CategoryApi.list()
+
+    create = async (category:Category): Promise<Result<Category>> =>
+      await CategoryApi.create(category)
 }
 
 const parseCategories = (data:any):Category[] => {

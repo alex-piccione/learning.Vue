@@ -1,15 +1,18 @@
 @import "base.css";
 
-.button-row {
+/*
+.buttons-row {
     border-top: var(--color-line);
-    padding: var(--gap);
+    padding: var(--gap) 0;
 
     display: flex;
-}
+}*/
 
+/*
 .button-row button {
     margin: 0 var(--gap);
 }
+*/
 
 /* text button... is used ? */
 .button-text {
@@ -25,6 +28,9 @@
     border-radius: var(--border-radius);
 }
 
+    .button-new {
+        background-color: #777;
+    }
     .button-create {
         background-color: #0e7272;
     }

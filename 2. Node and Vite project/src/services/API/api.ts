@@ -3,6 +3,8 @@ import Configuration from '@/configuration'
 import { addAxiosDateTransformer } from 'axios-date-transformer';
 import { failed } from '../Result';
 import CookieService from '../Cookies.service';
+import { redicrectToHome } from '@/router';
+import AuthService from '../Auth.service';
 
 let api = axios.create({
   baseURL: Configuration.apiUrl,
@@ -47,8 +49,17 @@ export function extendApi() {
   api.interceptors.request.use(
     request => {
       const authToken = CookieService.readCookie("AuthToken")
-      console.log(`AuthToken cookie: ${authToken}`)
-      authToken &&  (request.headers["X-Auth-Token"] = authToken)
+      if (authToken == null) {
+        console.error('AuthToken cookie is null. Redirect Home')
+        // TODO: show message to the user
+        new AuthService().logout()
+        redicrectToHome()
+      }
+      else
+        console.log(`Set AuthToken in request from cookie: ${authToken}`)
+
+      console.log(`interceptors.request`)
+      authToken && (request.headers["X-Auth-Token"] = authToken)
       return request
     }
   )

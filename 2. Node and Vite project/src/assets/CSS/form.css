@@ -3,6 +3,7 @@ form {
     transition: var(--transition);
 }
 
+/*
 .form-field {
     padding: 0 var(--gap);
     min-width: 50px;
@@ -19,6 +20,7 @@ form {
     min-width: 100px;
     width:70%;    
 }
+*/
 
 textarea.form-control {
     vertical-align: top;
@@ -75,15 +77,15 @@ form hr {
     margin: var(--gap-xl) 0;
 }
 
-form .buttons {
+form .buttons, .buttons-row {
     margin-top: var(--gap-xl);
     border-top: 1px solid rgba(200, 200, 200, .5);
     /*padding-top: var(--gap);*/
-    padding: var(--gap);
+    padding: var(--gap) 0;
 }
 
-form button {
-    line-height: 2rem;
+form button, .buttons-row button {
+    line-height: 1.5rem;
     font-weight: 500;
     font-size: 1.1rem;
     

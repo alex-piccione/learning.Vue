@@ -1,4 +1,5 @@
 <template>
+  Categories: {{ categories.length }}
     <table>
         <thead>
             <tr>

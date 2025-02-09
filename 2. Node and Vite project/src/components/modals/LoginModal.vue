@@ -13,11 +13,11 @@
       <form v-show="! loading" @submit.prevent="submit">
         <div class="field">
           <label for="user">User</label>
-          <input id="user" @input="clearMessage" v-model="loginForm.username" autocomplete="off" ref="inputUser" />
+          <input id="user" @input="clearMessage" v-model.trim="loginForm.username" autocomplete="off" ref="inputUser" />
         </div>
         <div class="field">
           <label for="password">Password</label>
-          <input id="password" type="password" @input="clearMessage" v-model="loginForm.password" autocomplete="off" />
+          <input id="password" type="password" @input="clearMessage" v-model.trim="loginForm.password" autocomplete="off" />
         </div>
 
         <div class="buttons">
@@ -53,6 +53,12 @@ const onOpen = () => inputUser.value?.focus()  // /*alert(this.$refs.input_user)
 
 const submit = async () => {
   message.value = null
+
+  if(loginForm.username == "" || loginForm.password == "") {
+    message.value = "Please fill in both fields."
+    return
+  }
+
   loading.value = true
   const result = await authService.login(loginForm.username, loginForm.password)
   loading.value = false
