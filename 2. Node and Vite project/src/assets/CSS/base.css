@@ -14,7 +14,8 @@
 /* Theme colors */
 :root {  
   --color-main: rgb(#555);
-  --color-alternative: rgb(72, 129, 187);
+  --color-alternative: rgb(37, 95, 153);
+  --color-alternative-light: rgb(72, 129, 187);
   /*--color-highlight: rgb(#455);*/
   --color-highlight: #FF7F50;  
 
@@ -24,13 +25,19 @@
   --color-background: rgba(50, 50, 50, .9);
   --color-background-secondary: rgba(40, 40, 40, .9);
 
-
   /* buttons */
   --color-submit: var(--color-alternative);  
   --color-ok: #77c046;
+  --color-ok: #6bac40;
   --color-ok-hover: #6bac40;
   --color-ok_2: rgb(0,180,10);
-  
+/*
+  --color-button-text: var(--color-txt);
+  --color-button-bg: rgba(100, 100, 100, .5);
+  --color-button-ok-text: var(--color-txt);
+  --color-button-ok-bg: rgba(100, 100, 100, .5);
+  */
+
   --color-cancel: var(--color-main);  
   --color-error: #E62C03;
   --color-error-dark: rgb(180, 10 ,0);
@@ -44,7 +51,8 @@
 
 
   /*--color-text: #d0d0d0; #e3f901*/
-  --color-text: #e3e9f1;
+  /*--color-text: #e3e9f1;*/
+  --color-text: #e9edf3;
   --color-text-highlight: var(--color-highlight);
   --color-text-alternative: var(--color-alternative);
   --color-text-heading: #f0f0f0;
@@ -75,7 +83,7 @@
 
 /* borders */
 :root {
-  /*--radius:*/
+  /*--radius: */
   --border-radius: 0.2rem;
   --border-radius-xs: 0.1rem;
   --border-radius-xl: 0.4rem;
@@ -87,6 +95,16 @@
 :root {
   --transition: background-color 0.5s ease, border-color 0.5s ease; /* Smooth transitions */
   --transtition-fast: background-color 0.2s ease, border-color 0.2s ease; /* Fast transitions */
+}
+
+/* buttons */
+:root {
+  --button-background: linear-gradient(135deg, 
+  rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
+  rgba(255, 255, 255, 0.1) 20%, /* More subtle highlight */
+  rgba(200, 200, 200, 0.05) 50%, /* Soft transition to base color */
+  rgba(150, 150, 150, 0.02) 80%, /* Even softer transition */
+  rgba(100, 100, 100, 0) 100%); /* Almost transparent at the bottom */
 }
 
 /* panels */
@@ -108,7 +126,7 @@
     rgba(180, 200, 235, 0.1) 20%, /* More subtle blue highlight */
     rgba(150, 170, 200, 0.05) 50%, /* Soft transition to base color */
     rgba(120, 140, 170, 0.02) 80%, /* Even softer transition */
-    rgba(100, 120, 150, 0) 100%); /* Almost transparent at the bottom */
+    rgba(100, 120, 150, 0.2) 100%); /* Almost transparent at the bottom */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -160,7 +178,7 @@ body {
     'Helvetica Neue',
     sans-serif;
   _font-size: 15px;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

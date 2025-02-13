@@ -1,5 +1,5 @@
 <template>
-    <div class="panel">
+<div class="panel">
     <h1>Sign Up</h1>
     <div style="display: none;">
       <Loading :loading="loading" text="loading..."></Loading>

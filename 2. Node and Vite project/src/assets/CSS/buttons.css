@@ -1,0 +1,84 @@
+@import "base.css";
+
+
+form button, .buttons-row button {
+    line-height: 1.8rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    
+    padding: 0 var(--gap-xl);
+    margin: 0 var(--gap-xl);
+    margin-inline-start: 0;
+    margin-inline-end: var(--gap-xl);
+
+    border: none;
+    border-radius: var(--border-radius);
+
+    cursor: pointer;
+    touch-action: manipulation;
+
+    color: var(--color-main);
+    color: var(--color-text-heading);
+    background: var(--color-alternative);   
+    _background: linear-gradient( var(--color-alternative) 0%, rgba(30,30,30,.2) 20%, rgba(30,30,30,.2) 80%, var(--color-background) );
+    /*text-shadow: 1px 1px var(--color-shadow-hover);*/
+    /*color: #eee;*/
+    /*text-shadow: 1px 1px 1px #333; */
+
+    /*background: var(--button-background);*/
+
+    /*border: var(--panel-border);*/
+    background: linear-gradient(175deg, 
+    rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
+    rgba(255, 255, 255, 0.1) 20%, /* More subtle highlight */
+    rgba(200, 200, 200, 0.05) 50%, /* Soft transition to base color */
+    rgba(150, 150, 150, 0.02) 80%, /* Even softer transition */
+    rgba(100, 100, 100, 0) 100%); /* Almost transparent at the bottom */
+
+    /*background-color: #0e7272;*/
+
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.2); /* Optional: Subtle shadow */
+}
+
+form button:hover, .buttons-row button:hover {
+    box-shadow: 1px 2px 5px rgba(50, 50, 50, 0.1); /* Optional: Subtle shadow */
+}
+
+/* text button... is used ? */
+.button-text {
+    padding: var(--gap);
+    /*background-color: var(--ba);*/
+    background: inherit;
+    color: var(--color-text-highlight);
+}
+
+.button {
+    padding: var(--gap);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+}
+
+    .button-new {
+        background-color: #777;
+    }
+    button.button-create {
+        background-color: #0e7272;
+    }
+
+    button.button-cancel {
+        background-color: #777;
+    }
+
+    .button-delete {
+        background-color: #d03030;
+    }
+
+    button.button-create:hover {
+        background-color: #0e7272;
+    }
+
+    .button-cancel:hover {
+        background-color: #777;
+    }

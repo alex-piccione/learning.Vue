@@ -3,7 +3,7 @@ import Configuration from '@/configuration'
 import { addAxiosDateTransformer } from 'axios-date-transformer';
 import { failed } from '../Result';
 import CookieService from '../Cookies.service';
-import { redicrectToHome } from '@/router';
+import { redirectToHome } from '@/router';
 import AuthService from '../Auth.service';
 
 let api = axios.create({
@@ -22,9 +22,11 @@ export const manageError = (err:Error) => {
     // Extract error message from API JSON esponse
     const { error, code } = err.response.data;  // "error" and "code" are fields of the API JSON response
 
-    if (code === "EXPIRED_AUTH_TOKEN")
+    // HACK: API is not returning the correct error code at the moment
+    if (code === "EXPIRED_AUTH_TOKEN" || `${error}`.includes("Authentication token is expired"))
     {
       console.error('Auth token is expired');
+      redirectToHome()
       return failed(err.message)
     }
 
@@ -53,7 +55,7 @@ export function extendApi() {
         console.error('AuthToken cookie is null. Redirect Home')
         // TODO: show message to the user
         new AuthService().logout()
-        redicrectToHome()
+        redirectToHome()
       }
       else
         console.log(`Set AuthToken in request from cookie: ${authToken}`)

@@ -24,16 +24,17 @@
     </div>
   </header>
 
-  <div class="panel">
+  <div class="page">
     <RouterView />
   </div>
 
   <div class="app-version">
-    <div>UI version: <span :class="ui_version != undefined ? 'green' : 'error'">{{ ui_version }}</span></div>
-    <div>API version: <span :class="api_version != 'unknown' ? 'green' : 'error'">{{ api_version }}</span></div>
+    <span>UI version: <span :class="ui_version ? 'highlight' : 'error'">{{ ui_version }}</span></span>
+    <span>API version: <span :class="api_version ? 'highlight' : 'error'">{{ api_version }}</span></span>
   </div>
 
   <LoginModal></LoginModal>
+  <PopupModal kind="Info"></PopupModal>
   <ModalsContainer />
 </template>
 
@@ -47,9 +48,12 @@ import { useUserStore } from './stores/UserStore'
 import AuthService from './services/Auth.service'
 import LoginModal from './components/modals/LoginModal.vue'
 import { ModalsContainer, useModal } from 'vue-final-modal'
+import { useCategoryDataStore } from './stores/CategoryDataStore'
+import PopupModal from './components/modals/PopupModal.vue'
 
 const authService = new AuthService()
 const userStore = useUserStore()
+const categoryDataStore = useCategoryDataStore()
 
 const isAuthenticated = ref(userStore.isAuthenticated)
 
@@ -66,6 +70,15 @@ onMounted(() => {
     })
 
   authService.checkAuthentication("onMounted")
+
+  categoryDataStore.load().then((result) => {
+    if(result.isSuccess) {
+      console.log("CategoriesData loaded")
+    }
+    else {
+      console.error(`Failed to load categories. ${result.error}`)
+    }
+  })
 })
 
 const loginModal = useModal({
@@ -95,12 +108,6 @@ header {
   margin: 0 auto 2rem;
 }
 
-.app-version {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
 nav {
   width: 100%;
   font-size: 12px;
@@ -124,6 +131,12 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.app-version {
+  position: block;
+  margin-top: var(--gap);
+  text-align: center;
 }
 
 @media (min-width: 1024px) {
@@ -150,6 +163,12 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+
+  .app-version {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
   }
 }
 </style>

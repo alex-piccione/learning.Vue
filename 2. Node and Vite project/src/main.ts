@@ -22,6 +22,12 @@ app.use(vfm)
 extendApi() // Call the function to extend the API
 extendDate() // Call the function to extend the Date prototype
 
+app.directive('focus', {
+  mounted: (element) => {
+    element.focus()
+  }
+})
+
 app.mount('#app')
 
 // Get Version from an environment variable

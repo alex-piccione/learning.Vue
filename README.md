@@ -5,10 +5,13 @@ Personal projects for practicing with Vue.js.
 [![Deploy VUE application Docker image](https://github.com/alex-piccione/learning.Vue/actions/workflows/deploy.yml/badge.svg)](https://github.com/alex-piccione/learning.Vue/actions/workflows/deploy.yml)
   
 Project with proper implementation:  
+
+``cd 2.\ Node\ and\ Vite\ project/ && npm run dev``
 ``cd "2.\ Node\ and\ Vite\ project"``   
 ``npm run dev``
-This prroject simulate a service to save personal expenses.  
-It use existing back-end API.  
+This prroject simulates a service to save personal expenses.  
+It uses existing back-end API.  
+API URL is defined in the __comonfiguration.ts__ file. 
 
 ## Loading animations with 3 dots
 

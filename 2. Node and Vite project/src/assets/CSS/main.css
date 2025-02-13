@@ -1,6 +1,6 @@
 @import './base.css';
 @import './table.css';
-@import './controls.css';
+@import './buttons.css';
 @import './form.css';
 @import './layout-elements.css';
 @import './vue-final-modal.css';
@@ -12,25 +12,30 @@
   font-weight: normal;
 }
 
-a, .green {
+.highlight {
+  color: var(--color-text-highlight);
+}
+
+a {
     text-decoration: none;
     /*color: hsla(160, 100%, 37%, 1);*/
-    color: var(--color-ok);
+    color: var(--color-text-highlight);
     transition: 0.4s;
     padding: var(--gap);
   }
 
 .error {
   font-weight: 600;
+  font-size: 1.2rem;
   color: var(--color-error); /* rgb(255, 17, 17); */
   transition: var(--transition);
   padding: var(--gap);
   white-space: pre-wrap; /* maintain size if text is white space */
 }
 
-/*.hidden {
-  opacity: 0; 
-}*/
+/*.hidden {  opacity: 0; }*/
+/*.visible { visibility: visible; }*/
+/*.hidden { visibility: hidden; }*/
 
 .hidden {  
   opacity: 0; /* Initially visible */
@@ -44,21 +49,20 @@ a, .green {
   transition: backdrop-filter 0.3s ease; /* Transition for  backdrop-filter */ 
 }
 
+.page {
+  margin-top: var(--gap-xl);
+  /*border: solid 10px var(--color-border);*/
+}
+
 .page-title {
   font-size: 1.5rem;
   color: var(--color-text-heading);
-  border-bottom: solid 1px var(--color-text-alternative);
+  /*border-bottom: solid 1px var(--color-border);*/
   font-weight: 600;
   margin-bottom: var(--gap);
 }
 
-.error {
-  font-size: 1.2rem;
-  color: var(--color-text-highlight);
-}
 
-/*.visible { visibility: visible; }*/
-/*.hidden { visibility: hidden; }*/
 
 @media (hover: hover) {
   a:hover {
@@ -69,12 +73,13 @@ a, .green {
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
+    /*place-items: center;*/ /* nice for landing page, but not operative page */
+    margin-top: var(--gap-xl);
   }
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 5fr;
     padding: 0 2rem;
   }
 }

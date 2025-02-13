@@ -10,8 +10,12 @@ export const CategoryApi = {
       .catch(manageError),
 
   create: async(category:Category) =>
-    //api<Category[]>({method: "LIST", url: "/category"})
     api.post<Category>("/category", category)
       .then(ok => success(ok.data))
-      .catch(manageError)
+      .catch(manageError),
+
+  delete: async(id:number) =>
+    api.delete("/category/" + id)
+      .then(ok => success(null))
+      .catch(manageError),
 }

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 
-import Counter from "@/components/CounterItem.vue";
-
-import CounterLogic from "../services/Counter"
-import OrangeButton from "../components/controls/OrangeButton.vue"
+import Counter from "@/components/CounterItem.vue"
+import CounterLogic from "@/services/Counter"
+import OrangeButton from "../controls/OrangeButton.vue";
 
 const onClick = () => CounterLogic.increment()
 

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from './views/HomeView.vue'
+import HomeView from './components/views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +12,12 @@ const router = createRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import("./views/LoginView.vue")
+      component: () => import("./components/views/LoginView.vue")
     },
     {
       path: "/signup",
       name: "signup",
-      component: () => import("./views/SignUpView.vue")
+      component: () => import("./components/views/SignUpView.vue")
     },
     {
       path: '/about',
@@ -25,21 +25,21 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('./views/AboutView.vue'),
+      component: () => import('./components/views/AboutView.vue'),
     },
     {
       path: "/counter",
       name: "counter",
-      component: () => import("./views/CounterView.vue")
+      component: () => import("./components/views/CounterView.vue")
     },
     {
       path: "/categories",
       name: "categories",
-      component: () => import("./views/CategoriesView.vue")
+      component: () => import("./components/views/CategoriesView.vue")
     }
   ],
 })
 
-export const redicrectToHome = () => router.replace("/")
+export const redirectToHome = () => router.replace("/")
 
 export default router

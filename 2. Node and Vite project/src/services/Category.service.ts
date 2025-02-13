@@ -15,6 +15,9 @@ export default class CategoryService {
 
     create = async (category:Category): Promise<Result<Category>> =>
       await CategoryApi.create(category)
+
+    delete = async (id:number) =>
+      await CategoryApi.delete(id)
 }
 
 const parseCategories = (data:any):Category[] => {
