@@ -1,8 +1,7 @@
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/images/logo.svg" width="400px"  />
+    <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="400px"  />
     <div class="wrapper">
-      <!--<HelloWorld msg="You did it!" />-->
       <UserState></UserState>
 
       <nav>
@@ -18,7 +17,6 @@
         </RouterLink>
 
         <!--<RouterLink to="/about">About</RouterLink>-->
-        <!--<RouterLink to="/counter">Counter</RouterLink>-->
         <RouterLink to="/categories">Categories</RouterLink>
       </nav>
     </div>
@@ -34,22 +32,20 @@
   </div>
 
   <LoginModal></LoginModal>
-  <PopupModal kind="Info"></PopupModal>
+  <!--<PopupModal kind="Info"></PopupModal>-->
   <ModalsContainer />
 </template>
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-//import HelloWorld from './components/HelloWorld.vue'
-import UserState from './components/UserState.vue'
 import { ref, onMounted } from 'vue'
-import { getInfo } from './services/API/api'
-import { useUserStore } from './stores/UserStore'
-import AuthService from './services/Auth.service'
-import LoginModal from './components/modals/LoginModal.vue'
+import { getInfo } from '../services/API/api'
+import { useUserStore } from '../stores/UserStore'
+import AuthService from '../services/Auth.service'
 import { ModalsContainer, useModal } from 'vue-final-modal'
-import { useCategoryDataStore } from './stores/CategoryDataStore'
-import PopupModal from './components/modals/PopupModal.vue'
+import { useCategoryDataStore } from '../stores/CategoryDataStore'
+import PopupModal from './modals/PopupModal.vue'
+import LoginModal from './modals/LoginModal.vue'
 
 const authService = new AuthService()
 const userStore = useUserStore()

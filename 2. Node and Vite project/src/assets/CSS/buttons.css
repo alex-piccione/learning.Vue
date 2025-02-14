@@ -60,9 +60,10 @@ form button:hover, .buttons-row button:hover {
     border-radius: var(--border-radius);
 }
 
-    .button-new {
-        background-color: #777;
+    button.button-new {
+        background-color: var(--color-alternative);
     }
+
     button.button-create {
         background-color: #0e7272;
     }
@@ -72,7 +73,7 @@ form button:hover, .buttons-row button:hover {
     }
 
     .button-delete {
-        background-color: #d03030;
+        background-color: var(--color-delete);
     }
 
     button.button-create:hover {

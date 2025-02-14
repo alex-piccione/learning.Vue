@@ -1,9 +1,9 @@
 <template>
-category: {{  category.id }}
+    <VButton kind="Cancel" text="Back" @click="emit('close')"></VButton>
 <form>
     <div class="field">
       <label>Name</label>
-      <span class="inoput">{{ category.name }}</span>
+      <span class="input">{{ category.name }}</span>
     </div>
     <div class="field">
       <label>Description</label>
@@ -13,18 +13,18 @@ category: {{  category.id }}
       <label>Created At</label>
       <span>{{ category.createdAt.shortDate() }}</span>
     </div>
-    <div class="buttons-row">
-      <VButton kind="Cancel" text="Back to list" @click="emit('close')"></VButton>
-    </div>
-
   </form>
-
+<hr>
   <div>
-    <h3>Subcategories (count: {{ category.subcategories.length }})</h3>
-    <div></div>
-
-
+    <h3>Subcategories <span style="font-size: 75%;">(count: {{ category.subcategories.length }})</span></h3>
+    <div v-for="sub in category.subcategories">
+      {{ sub.name }}
+    </div>
   </div>
+
+  <div class="buttons-row">
+      <VButton kind="Cancel" text="Back" @click="emit('close')"></VButton>
+    </div>
 </template>
 
 <script setup lang="ts">

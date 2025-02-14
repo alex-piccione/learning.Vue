@@ -1,6 +1,6 @@
 import './assets/CSS/main.css'
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './components/App.vue'
 import router from './router'
 import { extendDate } from './extensions/Date.extensions'
 import { extendApi } from './services/API/api'
