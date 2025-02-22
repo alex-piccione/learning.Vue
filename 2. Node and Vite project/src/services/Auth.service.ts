@@ -2,6 +2,7 @@ import { UserApi } from './API/User.api'
 import CookieService from './Cookies.service'
 import { useUserStore } from '@/stores/UserStore'
 import { success, failed, type Result } from './Result'
+import { redirectToHome } from '@/router'
 
 export default class AuthService {
 
@@ -16,7 +17,7 @@ export default class AuthService {
       userStore.login({ isAuthenticated: true, username: username, authToken: authToken })
 
       CookieService.setCookie("AuthToken", authToken, authTokenExpiresAt)
-      CookieService.setCookie("Username", username, authTokenExpiresAt)
+      //CookieService.setCookie("Username", username, authTokenExpiresAt)
 
       return success(undefined)
     }
@@ -31,17 +32,19 @@ export default class AuthService {
     userStore.logout()
     CookieService.removeCookie("AuthToken")
     CookieService.removeCookie("Username")
+    redirectToHome()
   }
 
+  /*
   checkAuthentication = (trigger: string) => {
     console.log(`checkAuthentication (${trigger})`)
     // check if user was logged in looking at cookies
-    const authToken = CookieService.readCookie("AuthToken")
-    const username = CookieService.readCookie("Username")
+    const authToken = CookieService.readCookie("AuthToken", `"checkAuthentication (${trigger})"`)
+    //const username = CookieService.readCookie("Username", `"checkAuthentication (${trigger})"`)
     if (authToken && username)
     {
       const userStore = useUserStore()
       userStore.login({isAuthenticated: true, authToken, username})
     }
-  }
+  }*/
 }

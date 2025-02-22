@@ -15,7 +15,7 @@
         </div>
         <div class="field">
             <label for="pasword" autocomplete="new-password">Password</label>
-            <input id="username" type="password" v-model="formData.password"  @input="clearMessage"/>
+            <input id="pasword" type="password" v-model="formData.password"  @input="clearMessage"/>
         </div>
         <div class="field">
             <label for="passwordRepeat" autocomplete="new-password">Repeat Password</label>

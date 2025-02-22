@@ -49,26 +49,20 @@ export function extendApi() {
   // add the Authentication token to the request
   api.interceptors.request.use(
     request => {
-
       // login request does not need authentication
-      if (request.url?.startsWith("/user/login")) return request
+      if (request.url?.startsWith("/user/login") || request.url?.startsWith("/info")) return request
 
-      const authToken = CookieService.readCookie("AuthToken")
+      const authToken = CookieService.readCookie("AuthToken", `api.interceptors.request (${request.url})`)
       if (authToken == null) {
         console.error('AuthToken cookie is null. Redirect Home')
         // TODO: show message to the user
+        // TODO: request login?
         new AuthService().logout()
         redirectToHome()
         return Promise.reject("Auth token is missed")
       }
       else
       {
-        //authToken.
-
-
-        console.log(`Set AuthToken in request from cookie: ${authToken}`)
-
-        console.log(`interceptors.request`)
         authToken && (request.headers["X-Auth-Token"] = authToken)
         return request
       }

@@ -3,21 +3,19 @@
     <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="400px"  />
     <div class="wrapper">
       <UserState></UserState>
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
+
         <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
-        <RouterLink to="/signup" v-if="!isAuthenticated">Sign Up 2</RouterLink>
         <RouterLink to="" v-if="!userStore.isAuthenticated">
           <a @click="openLoginModal">Login</a>
         </RouterLink>
-        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
-          <a @click="authService.logout">Logout</a>
-        </RouterLink>
+        <template v-if="userStore.isAuthenticated">
 
-        <!--<RouterLink to="/about">About</RouterLink>-->
-        <RouterLink to="/categories">Categories</RouterLink>
+          <!--<RouterLink to="/about">About</RouterLink>-->
+          <RouterLink to="/categories">Categories</RouterLink>
+      </template>
       </nav>
     </div>
   </header>
@@ -38,7 +36,7 @@
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import { getInfo } from '../services/API/api'
 import { useUserStore } from '../stores/UserStore'
 import { useCategoryDataStore } from '../stores/CategoryDataStore'
@@ -48,17 +46,14 @@ import PopupModal from './modals/PopupModal.vue'
 import LoginModal from './modals/LoginModal.vue'
 import UserState from './UserState.vue'
 
-const authService = new AuthService()
 const userStore = useUserStore()
 const categoryDataStore = useCategoryDataStore()
-
-const isAuthenticated = ref(userStore.isAuthenticated)
 
 const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>("loading")
 
 onMounted(() => {
-  console.debug("App.vue - onMounted")
+  console.log("App.vue - onMounted")
   getInfo()
     .then(info => api_version.value = info.version)
     .catch(err => {
@@ -66,16 +61,21 @@ onMounted(() => {
       console.error(`Failed to get API Info. ${err}`)
     })
 
-  authService.checkAuthentication("onMounted")
+  /*authService.checkAuthentication("onMounted")*/
+  //console.log("App.vue - isAuthenticated", isAuthenticated.value)
+  //console.log("App.vue - userStore.isAuthenticated", userStore.isAuthenticated)
 
-  categoryDataStore.load().then((result) => {
-    if(result.isSuccess) {
-      console.log("CategoriesData loaded")
-    }
-    else {
-      console.error(`Failed to load categories. ${result.error}`)
-    }
-  })
+  if(userStore.isAuthenticated)
+  {
+    categoryDataStore.load().then((result) => {
+      if(result.isSuccess) {
+        console.log("CategoriesData loaded")
+      }
+      else {
+        console.error(`Failed to load categories. ${result.error}`)
+      }
+    })
+  }
 })
 
 const loginModal = useModal({

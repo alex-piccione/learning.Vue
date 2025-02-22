@@ -1,8 +1,9 @@
 type cookie = "AuthToken" | "Username"
 
 export default class CookieService {
-  static readCookie = (name:cookie) => {
-    console.log(document.cookie)
+  static readCookie = (name:cookie, trigger:string) => {
+    console.log(`readCookie ${name} (for ${trigger}): ${document.cookie}`)
+    // TODO read all values of cookie
     const cookies = document.cookie.split('; ')
     const cookie = cookies.find( c => c.startsWith(`${name}=`))
     if (cookie) {

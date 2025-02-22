@@ -8,15 +8,15 @@ export interface User {
 
 export const useUserStore = defineStore("user", {
     state: ():User => ({
-                isAuthenticated: false,
-                username: null,
-                authToken: null
+      isAuthenticated: false,
+      username: null,
+      authToken: null
     }),
-    actions: {        
-        login(newUser:User) {
-            this.isAuthenticated = newUser.isAuthenticated
-            this.username = newUser.username
-            this.authToken = newUser.authToken
+    actions: {
+        login(user:User) {
+            this.isAuthenticated = user.isAuthenticated
+            this.username = user.username
+            this.authToken = user.authToken
             //state = {... state, newState}
         },
         logout() {
