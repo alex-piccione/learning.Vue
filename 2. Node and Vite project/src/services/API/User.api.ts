@@ -2,11 +2,10 @@ import { success, type Result } from "../Result"
 import api, { manageError } from "./api"
 
 export interface LoginResponse {
-  username: string
   authToken: string
   authTokenExpiresAt: Date
+  refreshToken: string
 }
-
 
 export interface CreateUserRequest {
   email: string

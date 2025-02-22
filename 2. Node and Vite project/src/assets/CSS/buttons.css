@@ -60,6 +60,10 @@ form button:hover, .buttons-row button:hover {
     border-radius: var(--border-radius);
 }
 
+    button.button-login {
+        background-color: var(--color-alternative);
+    }
+
     button.button-new {
         background-color: var(--color-alternative);
     }
@@ -72,7 +76,7 @@ form button:hover, .buttons-row button:hover {
         background-color: #777;
     }
 
-    .button-delete {
+    button.button-delete {
         background-color: var(--color-delete);
     }
 

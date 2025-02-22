@@ -41,11 +41,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { getInfo } from '../services/API/api'
 import { useUserStore } from '../stores/UserStore'
+import { useCategoryDataStore } from '../stores/CategoryDataStore'
 import AuthService from '../services/Auth.service'
 import { ModalsContainer, useModal } from 'vue-final-modal'
-import { useCategoryDataStore } from '../stores/CategoryDataStore'
 import PopupModal from './modals/PopupModal.vue'
 import LoginModal from './modals/LoginModal.vue'
+import UserState from './UserState.vue'
 
 const authService = new AuthService()
 const userStore = useUserStore()
@@ -57,7 +58,7 @@ const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>("loading")
 
 onMounted(() => {
-  console.log("App.vue - onMounted")
+  console.debug("App.vue - onMounted")
   getInfo()
     .then(info => api_version.value = info.version)
     .catch(err => {

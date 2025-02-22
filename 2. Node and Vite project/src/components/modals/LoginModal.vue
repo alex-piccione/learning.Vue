@@ -10,19 +10,17 @@
       <XButton @click="emit('close')"></XButton>
       <Loading :loading="loading" text="loading..."></Loading>
 
-      <form v-show="! loading" @submit.prevent="submit">
+      <form v-show="! loading" @submit.prevent="submit" autocomplete="off">
         <div class="field">
           <label for="user">User</label>
-          <input id="user" @input="clearMessage" v-model.trim="loginForm.username" autocomplete="off" ref="inputUser" />
+          <input id="user" @input="clearMessage" v-model.trim="loginForm.username" ref="inputUser" :autocomplete="autocomplete('login.user')"  />
         </div>
         <div class="field">
           <label for="password">Password</label>
           <input id="password" type="password" @input="clearMessage" v-model.trim="loginForm.password" autocomplete="off" />
         </div>
 
-        <div class="buttons">
-          <button type="submit">Login</button>
-        </div>
+        <button type="submit" class="button-login">Login</button>
 
         <div v-show="message" style="margin-top: 5px">
           <div class="error">{{ message }}</div>
@@ -38,6 +36,7 @@ import Loading from '@/components/Loading.vue'
 import XButton from './XButton.vue'
 import { defineEmits, reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
+import { autocomplete } from '@/services/Autocomplete'
 
 const emit = defineEmits(["close", "test"])
 
@@ -89,7 +88,7 @@ const clearMessage = () => message.value = null
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  min-height: 330px;
+  min-height: 350px;
   position: relative;
 
   background: var(--panel-background);
@@ -138,11 +137,11 @@ label {
   padding: 0 !important;
 }
 
-.buttons {
+button {
   margin-top: var(--gap-xxl);
+  margin-bottom: var(--gap-xxl);
+  width: 100%;
+  display: block;
+
 }
-  .buttons button {
-    width: 100%;
-    display: block;
-  }
 </style>

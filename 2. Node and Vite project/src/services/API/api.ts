@@ -20,10 +20,9 @@ api = addAxiosDateTransformer(api);
 export const manageError = (err:Error) => {
   if (axios.isAxiosError(err) && err.response) {
     // Extract error message from API JSON esponse
-    const { error, code } = err.response.data;  // "error" and "code" are fields of the API JSON response
+    const { error } = err.response.data;  // "error" and "code" are fields of the API JSON response
 
-    // HACK: API is not returning the correct error code at the moment
-    if (code === "EXPIRED_AUTH_TOKEN" || `${error}`.includes("Authentication token is expired"))
+    if (err.response.status === 401)
     {
       console.error('Auth token is expired');
       redirectToHome()
@@ -50,19 +49,29 @@ export function extendApi() {
   // add the Authentication token to the request
   api.interceptors.request.use(
     request => {
+
+      // login request does not need authentication
+      if (request.url?.startsWith("/user/login")) return request
+
       const authToken = CookieService.readCookie("AuthToken")
       if (authToken == null) {
         console.error('AuthToken cookie is null. Redirect Home')
         // TODO: show message to the user
         new AuthService().logout()
         redirectToHome()
+        return Promise.reject("Auth token is missed")
       }
       else
+      {
+        //authToken.
+
+
         console.log(`Set AuthToken in request from cookie: ${authToken}`)
 
-      console.log(`interceptors.request`)
-      authToken && (request.headers["X-Auth-Token"] = authToken)
-      return request
+        console.log(`interceptors.request`)
+        authToken && (request.headers["X-Auth-Token"] = authToken)
+        return request
+      }
     }
   )
 /*
