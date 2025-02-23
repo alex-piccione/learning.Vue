@@ -22,7 +22,8 @@
             <input id="passwordRepeat" type="password" v-model="formData.passwordRepeat"  @input="clearMessage"/>
         </div>
         <div class="buttons">
-          <button type="submit">Sign up</button>
+          <VButton kind="Create" text="Create a new account" @click="submit">Create a new account</VButton>
+          <VButton kind="Cancel" @click="cancel()" />
         </div>
         <div style="margin-top: 5px; ">
           <div class="error" :class="{ hidden: message == ' ' }">{{ message }}</div>
@@ -35,6 +36,8 @@
 import Loading from '@/components/Loading.vue'
 import UserService, { type CreateRequest } from '@/services/User.service';
 import { reactive, ref } from 'vue';
+import VButton from '../controls/VButton.vue';
+import { redirectToHome } from '@/router';
 
 //const emit = defineEmits(["close"])
 
@@ -70,9 +73,8 @@ const submit = async () => {
   }
 }
 
+const cancel = async () => { redirectToHome() }
+
 const clearMessage = () => message.value = " "
 
-function redirectToHome() {
-    throw new Error('Function not implemented.');
-}
 </script>

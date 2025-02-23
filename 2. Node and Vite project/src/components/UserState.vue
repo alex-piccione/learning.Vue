@@ -1,14 +1,20 @@
 <template>
-  <div class="box">
+  <div class="panel" style="width:100%">
     <template v-if="userStore.isAuthenticated">
       <div>Hello {{ userStore.username }}
-        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true">
-          <a @click="authService.logout" class="clickable">(logout)</a>
+        <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true" style="position: absolute; right: 0; top: 0;">
+        <a @click="authService.logout" class="clickable">(logout)</a>
         </RouterLink>
       </div>
     </template>
     <template v-else>
-    <div>Please Sign Up to create a user or Login if you already have one.</div>
+    <div>
+      <RouterLink to="/signup">Sign up</RouterLink> to create an account<br />
+    </div>
+    <div style="margin-left: var(--gap);">or</div>
+    <div>
+    <RouterLink to="" v-if="!userStore.isAuthenticated" @click="emit('login')">Log in</RouterLink> if you already have one
+    </div>
     </template>
   </div>
 </template>
@@ -20,10 +26,7 @@ import { useUserStore } from '@/stores/UserStore'
 const userStore = useUserStore()
 const authService = new AuthService()
 
-</script>
 
-<style scoped>
-.box {
-  margin-bottom: solid 1px #777;
-}
-</style>
+const emit = defineEmits(["login"])
+
+</script>

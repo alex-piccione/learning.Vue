@@ -18,10 +18,12 @@
 
 a {
     text-decoration: none;
-    /*color: hsla(160, 100%, 37%, 1);*/
+    font-weight: 500;
     color: var(--color-text-highlight);
     transition: 0.4s;
-    padding: var(--gap);
+    padding: var(--gap-xs);
+    margin: var(--gap-xs);
+    border-radius: var(--border-radius-xl);
   }
 
 .error {
@@ -66,7 +68,9 @@ a {
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    /*background-color: hsla(160, 100%, 37%, 0.2);*/
+    /*background-color: rgba(255,255,255, .05);*/
+    text-shadow: 0px 0px 5px rgba(255,255,255, .4);
   }
 }
 
@@ -79,7 +83,7 @@ a {
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 6fr;
     padding: 0 2rem;
   }
 }

@@ -1,21 +1,17 @@
 <template>
   <header>
-    <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="400px"  />
+    <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="350px"  />
     <div class="wrapper">
-      <UserState></UserState>
-      <nav>
+      <UserState @login="openLoginModal"></UserState>
+      <nav class="panel" v-if="userStore.isAuthenticated">
         <RouterLink to="/">Home</RouterLink>
         <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
-
+        <!--
         <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
-        <RouterLink to="" v-if="!userStore.isAuthenticated">
-          <a @click="openLoginModal">Login</a>
-        </RouterLink>
-        <template v-if="userStore.isAuthenticated">
-
+        <RouterLink to="" v-if="!userStore.isAuthenticated" @click="openLoginModal">Login</RouterLink>
+        -->
           <!--<RouterLink to="/about">About</RouterLink>-->
           <RouterLink to="/categories">Categories</RouterLink>
-      </template>
       </nav>
     </div>
   </header>
@@ -111,7 +107,6 @@ const loginModal = useModal({
 const openLoginModal = () => loginModal.open()
 const closeLoginModal = () => loginModal.close()
 
-
 </script>
 
 <style scoped>
@@ -133,7 +128,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: var(--color-text-highlight);
 }
 
 nav a.router-link-exact-active:hover {
@@ -143,7 +138,7 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-text);
 }
 
 nav a:first-of-type {
@@ -175,9 +170,8 @@ nav a:first-of-type {
 
   nav {
     text-align: left;
-    margin-left: -1rem;
+    /*margin-left: -1rem;*/
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
