@@ -28,11 +28,6 @@ const router = createRouter({
       component: () => import('./components/views/AboutView.vue'),
     },
     {
-      path: "/counter",
-      name: "counter",
-      component: () => import("./components/views/CounterView.vue")
-    },
-    {
       path: "/categories",
       name: "categories",
       component: () => import("./components/views/CategoriesView.vue")
