@@ -24,7 +24,7 @@ export const manageError = (err:Error) => {
 
     if (err.response.status === 401)
     {
-      console.error('Auth token is expired');
+      console.error('Auth token is expired or missed');
       redirectToHome()
       return failed(err.message)
     }
@@ -49,8 +49,13 @@ export function extendApi() {
   // add the Authentication token to the request
   api.interceptors.request.use(
     request => {
+      const authToken = CookieService.readCookie("AuthToken", `api.interceptors.request (${request.url})`)
+      authToken && (request.headers["X-Auth-Token"] = authToken)
+      return request
+
+/*
       // login request does not need authentication
-      if (request.url?.startsWith("/user/login") || request.url?.startsWith("/info")) return request
+      if (request.url?.startsWith("/user/login?") || request.url?.startsWith("/info")) return request
 
       const authToken = CookieService.readCookie("AuthToken", `api.interceptors.request (${request.url})`)
       if (authToken == null) {
@@ -66,6 +71,7 @@ export function extendApi() {
         authToken && (request.headers["X-Auth-Token"] = authToken)
         return request
       }
+        */
     }
   )
 /*

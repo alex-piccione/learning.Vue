@@ -45,7 +45,9 @@ import { ModalsContainer, useModal } from 'vue-final-modal'
 import PopupModal from './modals/PopupModal.vue'
 import LoginModal from './modals/LoginModal.vue'
 import UserState from './UserState.vue'
+import { debug } from '@/utils'
 
+const authService = new AuthService()
 const userStore = useUserStore()
 const categoryDataStore = useCategoryDataStore()
 
@@ -61,22 +63,40 @@ onMounted(() => {
       console.error(`Failed to get API Info. ${err}`)
     })
 
-  /*authService.checkAuthentication("onMounted")*/
-  //console.log("App.vue - isAuthenticated", isAuthenticated.value)
-  //console.log("App.vue - userStore.isAuthenticated", userStore.isAuthenticated)
+  initialize()
+})
 
-  if(userStore.isAuthenticated)
-  {
-    categoryDataStore.load().then((result) => {
+const initialize = () => {
+  // Refresh the page or load the page in another browser tab
+  debug("App.vue - initialize", userStore.isAuthenticated)
+  authService.checkAuthentication("onMounted").then(
+    result => {
       if(result.isSuccess) {
-        console.log("CategoriesData loaded")
+        debug("App.vue - userStore.isAuthenticated", userStore.isAuthenticated)
+
+        if(userStore.isAuthenticated)
+        {
+          /*categoryDataStore.load().then((result) => {
+            if(result.isSuccess) {
+              console.log("CategoriesData loaded")
+            }
+            else {
+              console.error(`Failed to load categories. ${result.error}`)
+            }
+          })*/
+        }
       }
       else {
-        console.error(`Failed to load categories. ${result.error}`)
+        console.error(`Failed to check authentication. ${result.error}`)
+        userStore.logout()
+        setTimeout(initialize, 1_000)
+        return;
       }
-    })
-  }
-})
+    }
+  )
+
+  setTimeout(initialize, 10_000)
+}
 
 const loginModal = useModal({
   component: LoginModal,

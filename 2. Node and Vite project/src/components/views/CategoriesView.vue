@@ -26,6 +26,8 @@ import ErrorMessage from '@/components/ErrorMessage.vue'
 import Button from '@/components/controls/VButton.vue'
 import SingleCategory from '@/components/Category/Single.category.vue'
 import { useCategoryDataStore, type CategoryData } from '@/stores/CategoryDataStore'
+import { useUserStore } from '@/stores/UserStore'
+import { redirectToHome } from '@/router'
 
 enum View { List, Single, New }
 
@@ -35,22 +37,28 @@ const viewType = ref(View.List)
 const setView = (newView:View) => { viewType.value = newView }
 const loading = ref(true)
 
+const userStore = useUserStore()
 const categoriesStore = useCategoryDataStore()
+
 
 onBeforeMount(() => {
   loading.value = true
 })
 
 onMounted(() => {
+  console.log("CategoriesView - onMounted")
+  if (!userStore.isAuthenticated)
+  {
+    redirectToHome()
+  }
   // if still not loaded give it a try...
-  if (categoriesStore.categories.length == 0) {
+  //if (categoriesStore.categories.length == 0) {
     console.log("loading categories")
     categoriesStore.load().then(result => {
       if (!result.isSuccess)
         error.value = result.error
     })
-  }
-
+  //}
 })
 
 

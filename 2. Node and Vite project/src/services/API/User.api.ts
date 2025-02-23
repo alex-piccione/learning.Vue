@@ -33,6 +33,12 @@ export const UserApi = {
       .catch(manageError)
   },
 
+  loginInfo: async (): Promise<Result<LoginResponse>> => {
+    return api.get<LoginResponse>(`/user/login-info`)
+      .then(ok => success(ok.data) )
+      .catch(manageError)
+  },
+
   create: async (request: CreateUserRequest): Promise<Result<CreateUserResponse>> => {
     // TODO: pass authToken
     return api.post<CreateUserResponse>(`/user`, request)

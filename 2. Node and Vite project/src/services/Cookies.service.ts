@@ -1,13 +1,15 @@
+import { debug } from "@/utils"
+
 type cookie = "AuthToken" | "Username"
 
 export default class CookieService {
   static readCookie = (name:cookie, trigger:string) => {
-    console.log(`readCookie ${name} (for ${trigger}): ${document.cookie}`)
+    debug(`readCookie ${name} (for ${trigger}): ${document.cookie}`)
     // TODO read all values of cookie
     const cookies = document.cookie.split('; ')
     const cookie = cookies.find( c => c.startsWith(`${name}=`))
     if (cookie) {
-      console.log(`cookie ${name}: ${cookie}`)
+      debug(`cookie ${name}: ${cookie}`)
       const value = cookie.split("=")[1]
       return value
     }
@@ -25,7 +27,7 @@ export default class CookieService {
   }
 
   static removeCookie = (name:cookie) => {
-    console.log("remove cookie")
+    debug("remove cookie")
     document.cookie = `${name}=; expires=${new Date().toUTCString()}; path=/; secure; SameSite=Strict;`
   }
 }
