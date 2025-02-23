@@ -15,6 +15,7 @@
     top: 0;
     right: 5px;
     cursor: pointer;
+    color: var(--color-text-disabled);
   }
 
   .modal-close-button:active {
@@ -24,7 +25,8 @@
 
   .modal-close-button:hover {
     /*box-shadow: 0 0 5px var(--color-shadow-hover);*/
-    border: solid 1px #d0d0d070;
-    border-radius: var(--border-radius);
+    /*border: solid 1px #d0d0d070;
+    border-radius: var(--border-radius);*/
+    color:var(--color-text)
   }
 </style>

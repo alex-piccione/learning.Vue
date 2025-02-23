@@ -6,7 +6,7 @@
     content-transition="vfm-fade"
     @opened="onOpen"
     >
-      <h1>Login</h1>
+      <h1 class="title">Login</h1>
       <XButton @click="emit('close')"></XButton>
       <Loading :loading="loading" text="loading..."></Loading>
 
@@ -81,15 +81,16 @@ const clearMessage = () => message.value = null
 .modal-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .modal-content {
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  min-height: 350px;
+  min-height: 380px;
   position: relative;
+  margin-top: 10%;
 
   background: var(--panel-background);
   padding: var(--panel-padding);
@@ -102,8 +103,10 @@ const clearMessage = () => message.value = null
 .modal-content > * + *{
   margin: 0.5rem 0;
 }
-.modal-content h1 {
+.modal-content h1.title {
   font-size: 1.3rem;
+  text-align: center;
+  font-weight: 600;
 }
 .modal-content button {
   margin: 0.3rem 0 0 auto;
@@ -111,12 +114,6 @@ const clearMessage = () => message.value = null
 
 .dark .modal-content {
   background: #000;
-}
-
-.modal-close-button {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 </style>
@@ -141,6 +138,7 @@ button {
   margin-top: var(--gap-xxl);
   margin-bottom: var(--gap-xxl);
   width: 100%;
+  line-height: 3rem;
   display: block;
 
 }

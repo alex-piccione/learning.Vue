@@ -44,6 +44,7 @@
   --color-text-highlight: var(--color-highlight);
   --color-text-alternative: var(--color-alternative);
   --color-text-heading: #b8caec;
+  --color-text-disabled: #afafaf;
 
   --color-line: var(vt-c-divider-light-1);
   
