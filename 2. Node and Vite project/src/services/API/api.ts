@@ -1,14 +1,14 @@
 import axios from 'axios'
 import Configuration from '@/configuration'
-import { addAxiosDateTransformer } from 'axios-date-transformer';
-import { failed } from '../Result';
-import CookieService from '../Cookies.service';
-import { redirectToHome } from '@/router';
-import AuthService from '../Auth.service';
+import { addAxiosDateTransformer } from 'axios-date-transformer'
+import { failed } from '../Result'
+import CookieService from '../Cookies.service'
+import { redirectToHome } from '@/router'
+import AuthService from '../Auth.service'
 
 let api = axios.create({
   baseURL: Configuration.apiUrl,
-  timeout: 5000,
+  timeout: 15_000,
   headers: {
     'Content-Type': 'application/json'
   }

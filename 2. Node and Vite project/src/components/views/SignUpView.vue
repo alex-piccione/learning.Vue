@@ -6,20 +6,20 @@
     </div>
     <form _v-show="! loading" :class="{ loading: loading }"  @submit.prevent="submit" autocomplete="off">
         <div class="field">
-            <label for="email" class="mandatory" autocomplete="email">Email</label>
-            <input id="email" type="text" v-model="formData.email"  @input="clearMessage"/>
+            <label for="email" class="mandatory">Email</label>
+            <input id="email" type="text" v-model="formData.email" :autocomplete="autocomplete('email')" @input="clearMessage"/>
         </div>
         <div class="field">
-            <label for="username" autocomplete="expenses">Username</label>
-            <input id="username" type="text" v-model="formData.username"  @input="clearMessage"/>
+            <label for="username">Username <span style="font-size: 80%; color:var(--color-text-disabled)">(optional)</span></label>
+            <input id="username" type="text" v-model="formData.username" :autocomplete="autocomplete('username')" @input="clearMessage"/>
         </div>
         <div class="field">
-            <label for="pasword" autocomplete="new-password">Password</label>
-            <input id="pasword" type="password" v-model="formData.password"  @input="clearMessage"/>
+            <label for="pasword">Password</label>
+            <input id="pasword" type="password" v-model="formData.password" autocomplete="off" @input="clearMessage"/>
         </div>
         <div class="field">
-            <label for="passwordRepeat" autocomplete="new-password">Repeat Password</label>
-            <input id="passwordRepeat" type="password" v-model="formData.passwordRepeat"  @input="clearMessage"/>
+            <label for="passwordRepeat">Repeat Password</label>
+            <input id="passwordRepeat" type="password" v-model="formData.passwordRepeat" autocomplete="off" @input="clearMessage"/>
         </div>
         <div class="buttons">
           <VButton kind="Create" text="Create a new account" @click="submit">Create a new account</VButton>
@@ -38,6 +38,7 @@ import UserService, { type CreateRequest } from '@/services/User.service';
 import { reactive, ref } from 'vue';
 import VButton from '../controls/VButton.vue';
 import { redirectToHome } from '@/router';
+import { autocomplete } from '@/services/Autocomplete';
 
 //const emit = defineEmits(["close"])
 
@@ -68,7 +69,7 @@ const submit = async () => {
     redirectToHome()
   }
   else {
-    console.error(`Failed to login. ${result.error}`)
+    console.error(`Failed to create a new account. ${result.error}`)
     message.value = result.error
   }
 }
