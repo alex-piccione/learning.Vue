@@ -2,7 +2,8 @@ import { createRouter, createWebHistory, type RouteLocationRaw } from 'vue-route
 import HomeView from './components/views/HomeView.vue'
 
 export const Routes = {
-  SignupEmailVerification:  "signup-email-verification"
+  SignupEmailVerification: 'signup-email-verification',
+  ResetPassword: 'reset-password',
 }
 
 const router = createRouter({
@@ -19,19 +20,24 @@ const router = createRouter({
       component: () => import("./components/views/LoginView.vue")
     },*/
     {
-      path: "/signup",
-      name: "signup",
-      component: () => import("./components/views/SignUpView.vue")
+      path: '/signup',
+      name: 'signup',
+      component: () => import('./components/views/SignUpView.vue'),
     },
     {
-      path: "/signup-email-verification",
+      path: '/signup-email-verification',
       name: Routes.SignupEmailVerification,
-      component: () => import("./components/views/Signup_EmailVerificationView.vue")
+      component: () => import('./components/views/Signup_EmailVerificationView.vue'),
     },
     {
-      path: "/signup-email-verified",
-      name: "signup-email-verified",
-      component: () => import("./components/views/Signup_EmailVerifiedView.vue")
+      path: '/signup-email-verified',
+      name: 'signup-email-verified',
+      component: () => import('./components/views/Signup_EmailVerifiedView.vue'),
+    },
+    {
+      path: 'reseet-password',
+      name: Routes.ResetPassword,
+      component: () => import('./components/views/ResetPasswordView.vue'),
     },
     {
       path: '/about',
@@ -42,14 +48,14 @@ const router = createRouter({
       component: () => import('./components/views/AboutView.vue'),
     },
     {
-      path: "/categories",
-      name: "categories",
-      component: () => import("./components/views/CategoriesView.vue")
-    }
+      path: '/categories',
+      name: 'categories',
+      component: () => import('./components/views/CategoriesView.vue'),
+    },
   ],
 })
 
-export const redirectToHome = () => router.replace("/")
-export const goTo = (path:string) => router.push({name: path})
+export const redirectToHome = () => router.replace('/')
+export const goTo = (path: string) => router.push({ name: path })
 
 export default router
