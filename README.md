@@ -2,7 +2,7 @@
 
 Personal projects for practicing with Vue.js.    
 
-[![Deploy VUE application Docker image](https://github.com/alex-piccione/learning.Vue/actions/workflows/deploy.yml/badge.svg)](https://github.com/alex-piccione/learning.Vue/actions/workflows/deploy.yml)
+[![Deploy VUE application Docker image](https://github.com/alex-piccione/learning.Vue/actions/workflows/expenses_deploy.yml/badge.svg)](https://github.com/alex-piccione/learning.Vue/actions/workflows/expenses_deploy.yml)  
   
 Project with proper implementation:  
 
