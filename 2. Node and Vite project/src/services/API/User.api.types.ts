@@ -1,3 +1,14 @@
+export interface LoginResponse {
+  username: string
+  authToken: string
+  authTokenExpiresAt: Date
+  refreshToken: string
+}
+
+export interface UserInfoResponse {
+  username: string
+}
+
 export namespace Signup {
   export interface Request {
     email: string
