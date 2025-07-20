@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Docker image
         run: |
-          cd 'cd 2.\ Node\ and\ Vite\ project'
+          cd '2.\ Node\ and\ Vite\ project'
           docker image build -t $IMAGE --build-arg VERSION=$VERSION --build-arg CONFIGURATION_FILE=$CONFIGURATION_FILE -f ./Dockerfile .
           docker image inspect $IMAGE | grep Size | awk '{print $2}'
           #image_size=$(docker image inspect $IMAGE | grep Size | awk '{print $2}')
