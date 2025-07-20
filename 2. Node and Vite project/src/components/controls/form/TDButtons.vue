@@ -1,14 +1,15 @@
 <template>
   <td>
-    <IconDelete v-if="remove" @click="emit('remove')" class="icon" />
-    <img src="../assets/icons/delete_1.svg" v-else class="icon" />
+    <IconDelete v-show="remove" @click="emit('remove')" class="icon" />
+    <!-- v-if="remove"  -->
+    <!--   <img v-else class="icon" src="../assets/icons/delete.svg" /> -->
   </td>
 </template>
 
 <script setup lang="ts">
 import IconDelete from '@/components/icons/IconDelete.vue'
 defineProps({
-  remove: Boolean
+  remove: Boolean,
 })
-const emit = defineEmits(["remove"])
+const emit = defineEmits(['remove'])
 </script>
