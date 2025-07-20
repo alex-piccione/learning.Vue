@@ -5,32 +5,15 @@
     overlay-transition="vfm-fade"
     content-transition="vfm-fade"
     @opened="onOpen"
-  >
-    <h1 class="title">Login</h1>
-    <XButton @click="emit('close')"></XButton>
-    <Loading :loading="loading" text="loading..."></Loading>
+    >
+      <h1 class="title">Email Verification</h1>
+      <XButton @click="emit('close')"></XButton>
+      <Loading :loading="loading" text="loading..."></Loading>
 
-    <div v-show="!loading">
-      <form @submit.prevent="submit" autocomplete="off">
+      <form v-show="! loading" @submit.prevent="submit" autocomplete="off">
         <div class="field">
           <label for="user">User (username or email)</label>
-          <input
-            id="user"
-            @input="clearMessage"
-            v-model.trim="loginForm.user"
-            ref="inputUser"
-            :autocomplete="autocomplete('login.user')"
-          />
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            @input="clearMessage"
-            v-model.trim="loginForm.password"
-            autocomplete="off"
-          />
+          <input id="user" @input="clearMessage" v-model.trim="loginForm.username" ref="inputUser" :autocomplete="autocomplete('login.user')"  />
         </div>
 
         <button type="submit" class="button-login">Login</button>
@@ -40,9 +23,7 @@
         </div>
       </form>
 
-      <TextButton @click="emit('close', 'forgot-password')">I forgot the password</TextButton>
-    </div>
-  </VueFinalModal>
+    </VueFinalModal>
 </template>
 
 <script setup lang="ts">
@@ -52,40 +33,41 @@ import XButton from './XButton.vue'
 import { reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
 import { autocomplete } from '@/services/Autocomplete'
-import TextButton from '../controls/TextButton.vue'
 
-// Note: emit custom events loike "forgot-password" are not propagated by VueFinalModal !!
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close", "test"])
 
 const loading = ref(false)
-const message = ref<string | null>(null)
+const message = ref<string|null>(null)
 
-const loginForm = reactive({ user: '', password: '' })
+const loginForm = reactive({username:"", password:""})
 const authService = new AuthService()
 
-const inputUser = ref<HTMLInputElement | null>(null) // name should match the "ref" property on the element
-const onOpen = () => inputUser.value?.focus() // /*alert(this.$refs.input_user)*/
+const inputUser = ref<HTMLInputElement|null>(null) // name should match the "ref" property on the element
+const onOpen = () => inputUser.value?.focus()  // /*alert(this.$refs.input_user)*/
 
 const submit = async () => {
   message.value = null
 
-  if (loginForm.user == '' || loginForm.password == '') {
-    message.value = 'Please fill in both fields.'
+  if(loginForm.username == "" || loginForm.password == "") {
+    message.value = "Please fill in both fields."
     return
   }
 
   loading.value = true
-  const result = await authService.login(loginForm.user, loginForm.password)
+  const result = await authService.login(loginForm.username, loginForm.password)
   loading.value = false
 
   if (result.isSuccess) {
-    emit('close')
-  } else {
+    emit("close")
+  }
+  else {
+    console.error(`Failed to login. ${result.error}`)
     message.value = result.error
   }
 }
 
-const clearMessage = () => (message.value = null)
+const clearMessage = () => message.value = null
+
 </script>
 
 <style>
@@ -108,10 +90,10 @@ const clearMessage = () => (message.value = null)
   border: var(--panel-border);
   border-radius: var(--panel-border-radius);
 
-  _box-shadow: rgba(150, 150, 150, 0.8) 0 -2px 4px;
+  _box-shadow: rgba(150,150,150, 0.8) 0 -2px 4px;
   box-shadow: rgba(50, 50, 80, 0.7) 0 2px 4px;
 }
-.modal-content > * + * {
+.modal-content > * + *{
   margin: 0.5rem 0;
 }
 .modal-content h1.title {
@@ -126,6 +108,7 @@ const clearMessage = () => (message.value = null)
 .dark .modal-content {
   background: #000;
 }
+
 </style>
 
 <style scoped>
@@ -144,11 +127,12 @@ label {
   padding: 0 !important;
 }
 
-.button-login {
+button {
   margin-top: var(--gap-xxl);
   margin-bottom: var(--gap-xxl);
   width: 100%;
   line-height: 3rem;
   display: block;
+
 }
 </style>

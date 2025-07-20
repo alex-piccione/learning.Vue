@@ -9,7 +9,9 @@
 
     type Kind = "Generic" | "New" | "Create" | "Cancel" | "Delete"
 
-    const buttonText = (kind:Kind, text?:string,) => text || (kind === "Generic" ? "text property is missing" : kind)
+    const buttonText = (kind:Kind, text?:string) =>
+    text || (kind === "Generic" ? "text property is missing" : kind)
+
     const buttonClass = (kind:Kind) =>
       kind === "New" ? "button-new" :
       kind === "Create" ? "button-create" :
@@ -24,7 +26,11 @@
     :class="buttonClass(kind)"
     :type="submit === true ? 'submit' : 'button'"
     @click="emit('click')">
-      {{ buttonText(kind, text) }}
+      <!-- Use slot content if provided, otherwise fallback to text or kind -->
+      <slot v-if="$slots.default"></slot>
+      <template v-else>
+        {{ buttonText(kind, text) }}
+      </template>
   </button>
 </template>
 

@@ -157,7 +157,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.clickable {
+.clickable, button {
   cursor: pointer;
 }
 

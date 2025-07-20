@@ -52,6 +52,9 @@ form button:hover, .buttons-row button:hover {
     /*background-color: var(--ba);*/
     background: inherit;
     color: var(--color-text-highlight);
+
+    background: none;
+    border: none;
 }
 
 .button {
@@ -61,6 +64,10 @@ form button:hover, .buttons-row button:hover {
 }
 
     button.button-login {
+        background-color: var(--color-alternative);
+    }
+
+    button.button-submit {
         background-color: var(--color-alternative);
     }
 

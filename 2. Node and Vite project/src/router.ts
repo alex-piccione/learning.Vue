@@ -1,5 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteLocationRaw } from 'vue-router'
 import HomeView from './components/views/HomeView.vue'
+
+export const Routes = {
+  SignupEmailVerification:  "signup-email-verification"
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,15 +13,25 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
+    /*{
       path: "/login",
       name: "login",
       component: () => import("./components/views/LoginView.vue")
-    },
+    },*/
     {
       path: "/signup",
       name: "signup",
       component: () => import("./components/views/SignUpView.vue")
+    },
+    {
+      path: "/signup-email-verification",
+      name: Routes.SignupEmailVerification,
+      component: () => import("./components/views/Signup_EmailVerificationView.vue")
+    },
+    {
+      path: "/signup-email-verified",
+      name: "signup-email-verified",
+      component: () => import("./components/views/Signup_EmailVerifiedView.vue")
     },
     {
       path: '/about',
@@ -36,5 +50,6 @@ const router = createRouter({
 })
 
 export const redirectToHome = () => router.replace("/")
+export const goTo = (path:string) => router.push({name: path})
 
 export default router

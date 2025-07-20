@@ -5,13 +5,12 @@
       <UserState @login="openLoginModal"></UserState>
       <nav class="panel" v-if="userStore.isAuthenticated">
         <RouterLink to="/">Home</RouterLink>
-        <!--<RouterLink to="/login" v-if="!userStore.isAuthenticated">Login page</RouterLink>-->
         <!--
         <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
         <RouterLink to="" v-if="!userStore.isAuthenticated" @click="openLoginModal">Login</RouterLink>
         -->
           <!--<RouterLink to="/about">About</RouterLink>-->
-          <RouterLink to="/categories">Categories</RouterLink>
+        <RouterLink to="/categories">Categories</RouterLink>
       </nav>
     </div>
   </header>
@@ -20,12 +19,14 @@
     <RouterView />
   </div>
 
+
   <div class="app-version">
     <span>UI version: <span :class="ui_version ? 'highlight' : 'error'">{{ ui_version }}</span></span>
     <span>API version: <span :class="api_version ? 'highlight' : 'error'">{{ api_version }}</span></span>
   </div>
 
   <LoginModal></LoginModal>
+  <PasswordForgotModal></PasswordForgotModal>
   <!--<PopupModal kind="Info"></PopupModal>-->
   <ModalsContainer />
 </template>
@@ -40,12 +41,13 @@ import AuthService from '../services/Auth.service'
 import { ModalsContainer, useModal } from 'vue-final-modal'
 import PopupModal from './modals/PopupModal.vue'
 import LoginModal from './modals/LoginModal.vue'
+import PasswordForgotModal from './modals/PasswordForgotModal.vue'
 import UserState from './UserState.vue'
 import { debug } from '@/utils'
 
 const authService = new AuthService()
 const userStore = useUserStore()
-const categoryDataStore = useCategoryDataStore()
+//const categoryDataStore = useCategoryDataStore()
 
 const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>("loading")
@@ -97,15 +99,24 @@ const initialize = () => {
 const loginModal = useModal({
   component: LoginModal,
   attrs: {
-    onClose() { closeLoginModal()},
-  },
-  /*slots: {
-      default: '<p>UseModal: The content of the modal</p>',
-  },*/
+    onClose(data:any) { closeLoginModal(data)},
+  }
 })
 
 const openLoginModal = () => loginModal.open()
-const closeLoginModal = () => loginModal.close()
+const closeLoginModal = (data:any) => {
+  loginModal.close()
+  data === 'forgot-password' && passwordForgotModal.open()
+}
+
+const passwordForgotModal = useModal({
+  component: PasswordForgotModal,
+  attrs: {
+    onClose(data:any) { closePasswordForgotModal(data)},
+  }
+})
+
+const closePasswordForgotModal = (data:any) => passwordForgotModal.close()
 
 </script>
 

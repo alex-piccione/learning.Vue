@@ -6,42 +6,34 @@
     content-transition="vfm-fade"
     @opened="onOpen"
   >
-    <h1 class="title">Login</h1>
+    <h1 class="title">Password Forgot</h1>
     <XButton @click="emit('close')"></XButton>
+
+    <p>
+      Our system does not know your password, it is saved encrypted. <br />
+      We will send a link to your email for create a new password.
+    </p>
+
     <Loading :loading="loading" text="loading..."></Loading>
 
-    <div v-show="!loading">
-      <form @submit.prevent="submit" autocomplete="off">
-        <div class="field">
-          <label for="user">User (username or email)</label>
-          <input
-            id="user"
-            @input="clearMessage"
-            v-model.trim="loginForm.user"
-            ref="inputUser"
-            :autocomplete="autocomplete('login.user')"
-          />
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            @input="clearMessage"
-            v-model.trim="loginForm.password"
-            autocomplete="off"
-          />
-        </div>
+    <form v-show="!loading" @submit.prevent="submit" autocomplete="off">
+      <div class="field">
+        <label for="user">User (username or email)</label>
+        <input
+          id="user"
+          @input="clearMessage"
+          v-model.trim="form.user"
+          ref="inputUser"
+          :autocomplete="autocomplete('login.user')"
+        />
+      </div>
 
-        <button type="submit" class="button-login">Login</button>
+      <button type="submit" class="button-submit">Submit</button>
 
-        <div v-show="message" style="margin-top: 5px">
-          <div class="error">{{ message }}</div>
-        </div>
-      </form>
-
-      <TextButton @click="emit('close', 'forgot-password')">I forgot the password</TextButton>
-    </div>
+      <div v-show="message" style="margin-top: 5px">
+        <div class="error">{{ message }}</div>
+      </div>
+    </form>
   </VueFinalModal>
 </template>
 
@@ -52,15 +44,13 @@ import XButton from './XButton.vue'
 import { reactive, ref } from 'vue'
 import { VueFinalModal } from 'vue-final-modal'
 import { autocomplete } from '@/services/Autocomplete'
-import TextButton from '../controls/TextButton.vue'
 
-// Note: emit custom events loike "forgot-password" are not propagated by VueFinalModal !!
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'forgot-password'])
 
 const loading = ref(false)
 const message = ref<string | null>(null)
 
-const loginForm = reactive({ user: '', password: '' })
+const form = reactive({ user: '' })
 const authService = new AuthService()
 
 const inputUser = ref<HTMLInputElement | null>(null) // name should match the "ref" property on the element
@@ -69,18 +59,21 @@ const onOpen = () => inputUser.value?.focus() // /*alert(this.$refs.input_user)*
 const submit = async () => {
   message.value = null
 
-  if (loginForm.user == '' || loginForm.password == '') {
-    message.value = 'Please fill in both fields.'
+  const user = form.user.trim()
+
+  if (user === '') {
+    message.value = 'Please enter a username or email.'
     return
   }
 
   loading.value = true
-  const result = await authService.login(loginForm.user, loginForm.password)
+  const result = await authService.forgotPassword(user)
   loading.value = false
 
   if (result.isSuccess) {
     emit('close')
   } else {
+    console.error(`Failed to send email to reset the password. ${result.error}`)
     message.value = result.error
   }
 }
@@ -144,7 +137,7 @@ label {
   padding: 0 !important;
 }
 
-.button-login {
+.button-submit {
   margin-top: var(--gap-xxl);
   margin-bottom: var(--gap-xxl);
   width: 100%;
