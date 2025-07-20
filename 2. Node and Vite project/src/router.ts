@@ -35,7 +35,7 @@ const router = createRouter({
       component: () => import('./components/views/Signup_EmailVerifiedView.vue'),
     },
     {
-      path: 'reseet-password',
+      path: '/reset-password',
       name: Routes.ResetPassword,
       component: () => import('./components/views/ResetPasswordView.vue'),
     },
