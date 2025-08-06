@@ -1,6 +1,6 @@
 <template>
-    <VButton kind="Cancel" text="Back" @click="emit('close')"></VButton>
-<form>
+  <VButton kind="Cancel" text="Back to list" @click="emit('close')"></VButton>
+  <form>
     <div class="field">
       <label>Name</label>
       <span class="input">{{ category.name }}</span>
@@ -14,24 +14,26 @@
       <span>{{ category.createdAt.shortDate() }}</span>
     </div>
   </form>
-<hr>
+  <hr />
   <div>
-    <h3>Subcategories <span style="font-size: 75%;">(count: {{ category.subcategories.length }})</span></h3>
+    <h3>
+      Subcategories <span style="font-size: 75%">(count: {{ category.subcategories.length }})</span>
+    </h3>
     <div v-for="sub in category.subcategories">
       {{ sub.name }}
     </div>
   </div>
 
-  <div class="buttons-row">
-      <VButton kind="Cancel" text="Back" @click="emit('close')"></VButton>
-    </div>
+  <!--<div class="buttons-row">
+    <VButton kind="Cancel" text="Back" @click="emit('close')"></VButton>
+  </div>
+  -->
 </template>
 
 <script setup lang="ts">
 import type { CategoryData } from '@/stores/CategoryDataStore'
 import VButton from '../controls/VButton.vue'
 
-defineProps<{category:CategoryData}>()
-const emit = defineEmits(["close"])
-
+defineProps<{ category: CategoryData }>()
+const emit = defineEmits(['close'])
 </script>

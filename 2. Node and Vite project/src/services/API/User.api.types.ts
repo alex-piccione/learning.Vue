@@ -3,6 +3,7 @@ export interface LoginResponse {
   authToken: string
   authTokenExpiresAt: Date
   refreshToken: string
+  refreshTokenExpiresAt: Date
 }
 
 export interface UserInfoResponse {

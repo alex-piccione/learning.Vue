@@ -8,7 +8,6 @@ import { createPinia } from 'pinia'
 import { createVfm } from 'vue-final-modal'
 import 'vue-final-modal/style.css' // required by  vue-final-modal 4
 
-
 const app = createApp(App)
 
 app.use(router)
@@ -19,13 +18,15 @@ app.use(pinia)
 const vfm = createVfm()
 app.use(vfm)
 
-extendApi() // Call the function to extend the API
+console.info('App is starting...')
+
+await extendApi() // Call the function to extend the API, requires API Info to be set
 extendDate() // Call the function to extend the Date prototype
 
 app.directive('focus', {
   mounted: (element) => {
     element.focus()
-  }
+  },
 })
 
 app.mount('#app')
@@ -34,6 +35,6 @@ app.mount('#app')
 // Augment the global `import.meta` object
 declare global {
   interface ImportMetaEnv {
-    readonly VITE_UI_VERSION: string | undefined; // VITE_ prefix is mandatory
+    readonly VITE_UI_VERSION: string | undefined // VITE_ prefix is mandatory
   }
 }

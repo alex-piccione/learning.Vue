@@ -3,7 +3,7 @@
     <template v-if="userStore.isAuthenticated">
       <div>Hello {{ userStore.username }}
         <RouterLink to="" v-if="userStore.isAuthenticated" :custom="true" style="position: absolute; right: 0; top: 0;">
-        <a @click="authService.logout" class="clickable">(logout)</a>
+          <a @click="authService.logout" class="clickable">(logout)</a>
         </RouterLink>
       </div>
     </template>
@@ -13,19 +13,18 @@
     </div>
     <div style="margin-left: var(--gap);">or</div>
     <div>
-    <RouterLink to="" v-if="!userStore.isAuthenticated" @click="emit('login')">Log in</RouterLink> if you already have one
+      <RouterLink to="" v-if="!userStore.isAuthenticated" @click="emit('login')">Log in</RouterLink> if you already have one
     </div>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import AuthService from '@/services/Auth.service';
+import AuthService from '@/services/Auth.service'
 import { useUserStore } from '@/stores/UserStore'
 
 const userStore = useUserStore()
 const authService = new AuthService()
-
 
 const emit = defineEmits(["login"])
 

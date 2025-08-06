@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="350px"  />
+    <img alt="Logo" class="logo" src="@/assets/images/logo.svg" width="350px" />
     <div class="wrapper">
       <UserState @login="openLoginModal"></UserState>
       <nav class="panel" v-if="userStore.isAuthenticated">
@@ -9,7 +9,7 @@
         <RouterLink to="/signup" v-if="!userStore.isAuthenticated">Sign Up</RouterLink>
         <RouterLink to="" v-if="!userStore.isAuthenticated" @click="openLoginModal">Login</RouterLink>
         -->
-          <!--<RouterLink to="/about">About</RouterLink>-->
+        <!--<RouterLink to="/about">About</RouterLink>-->
         <RouterLink to="/categories">Categories</RouterLink>
       </nav>
     </div>
@@ -19,10 +19,13 @@
     <RouterView />
   </div>
 
-
   <div class="app-version">
-    <span>UI version: <span :class="ui_version ? 'highlight' : 'error'">{{ ui_version }}</span></span>
-    <span>API version: <span :class="api_version ? 'highlight' : 'error'">{{ api_version }}</span></span>
+    <span
+      >UI version: <span :class="ui_version ? 'highlight' : 'error'">{{ ui_version }}</span></span
+    >
+    <span
+      >API version: <span :class="api_version ? 'highlight' : 'error'">{{ api_version }}</span></span
+    >
   </div>
 
   <LoginModal></LoginModal>
@@ -44,67 +47,71 @@ import LoginModal from './modals/LoginModal.vue'
 import PasswordForgotModal from './modals/PasswordForgotModal.vue'
 import UserState from './UserState.vue'
 import { debug } from '@/utils'
+import configuration from '@/configuration'
+import { useApiInfoStore } from '@/stores/ApiInfoStore_old'
 
 const authService = new AuthService()
+const apiInfoStore = useApiInfoStore()
 const userStore = useUserStore()
 //const categoryDataStore = useCategoryDataStore()
 
 const ui_version = import.meta.env.VITE_UI_VERSION
-const api_version = ref<string>("loading")
+const api_version = ref<string>('loading')
+
+if (configuration.debug === false) console.log('configuration.debug is set to false')
 
 onMounted(() => {
-  console.log("App.vue - onMounted")
-  getInfo()
-    .then(info => api_version.value = info.version)
-    .catch(err => {
-      api_version.value = "unknown"
-      console.error(`Failed to get API Info. ${err}`)
-    })
+  debug('App - onMounted')
+
+  api_version.value = apiInfoStore.version
 
   initialize()
+
+  checkAuthentication()
 })
 
 const initialize = () => {
-  // Refresh the page or load the page in another browser tab
-  debug("App.vue - initialize", userStore.isAuthenticated)
-  authService.checkAuthentication("onMounted").then(
-    result => {
-      if(result.isSuccess) {
-        debug("App.vue - userStore.isAuthenticated", userStore.isAuthenticated)
-
-        if(userStore.isAuthenticated)
-        {
-          /*categoryDataStore.load().then((result) => {
-            if(result.isSuccess) {
-              console.log("CategoriesData loaded")
-            }
-            else {
-              console.error(`Failed to load categories. ${result.error}`)
-            }
-          })*/
-        }
-      }
-      else {
-        console.error(`Failed to check authentication. ${result.error}`)
-        userStore.logout()
-        setTimeout(initialize, 1_000)
-        return;
-      }
+  debug('App - initialize')
+  authService.checkExistingSession('onMounted').then((result) => {
+    if (result.isSuccess) {
+      // put initialization logic here
+    } else {
+      console.error(`Failed to check authentication. ${result.error}`)
+      // logout user if check fails for many times
+      //userStore.logout()
+      //setTimeout(initialize, 2_000)
+      return
     }
-  )
+  })
+}
 
-  setTimeout(initialize, 10_000)
+// Check authentication every N seconds to intercept login/logout from other tabs
+const checkAuthentication = () => {
+  debug('App - checkAuthentication')
+  authService.checkExistingSession('App checkAuthentication').then((result) => {
+    if (result.isSuccess) {
+      setTimeout(checkAuthentication, 10_000 * 10)
+    } else {
+      console.error(`Failed to check authentication. ${result.error}`)
+      // logout user if check fails for many times
+      //userStore.logout()
+      //setTimeout(checkAuthentication, 2_000 * 10)
+      return
+    }
+  })
 }
 
 const loginModal = useModal({
   component: LoginModal,
   attrs: {
-    onClose(data:any) { closeLoginModal(data)},
-  }
+    onClose(data: any) {
+      closeLoginModal(data)
+    },
+  },
 })
 
 const openLoginModal = () => loginModal.open()
-const closeLoginModal = (data:any) => {
+const closeLoginModal = (data: any) => {
   loginModal.close()
   data === 'forgot-password' && passwordForgotModal.open()
 }
@@ -112,12 +119,13 @@ const closeLoginModal = (data:any) => {
 const passwordForgotModal = useModal({
   component: PasswordForgotModal,
   attrs: {
-    onClose(data:any) { closePasswordForgotModal(data)},
-  }
+    onClose(data: any) {
+      closePasswordForgotModal(data)
+    },
+  },
 })
 
-const closePasswordForgotModal = (data:any) => passwordForgotModal.close()
-
+const closePasswordForgotModal = (data: any) => passwordForgotModal.close()
 </script>
 
 <style scoped>
