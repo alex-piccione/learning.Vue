@@ -1,35 +1,34 @@
 /* Theme colors */
-:root {  
+:root {
   --color-main: rgb(#555);
   --color-alternative: rgb(37, 95, 153);
   --color-alternative-light: rgb(72, 129, 187);
   /*--color-highlight: rgb(#455);*/
-  --color-highlight: #FF7F50;  
+  --color-highlight: #ff7f50;
 
   --color-border: rgba(60, 60, 60, 0.12);
-  --color-border-secondary: rgba(60, 60, 60, .8);  
+  --color-border-secondary: rgba(60, 60, 60, 0.8);
   --color-border-hover: rgba(60, 60, 60, 0.29);
   --color-border-dark: rgba(84, 84, 84, 0.48);
 
-  --color-background: rgba(50, 50, 50, .9);
-  --color-background-secondary: rgba(40, 40, 40, .9);
+  --color-background: rgba(50, 50, 50, 0.9);
+  --color-background-secondary: rgba(40, 40, 40, 0.9);
 
   /* buttons */
-  --color-submit: var(--color-alternative);  
+  --color-submit: var(--color-alternative);
   --color-ok: #77c046;
   --color-ok: #6bac40;
   --color-ok-hover: #6bac40;
 
   --color-new: var(--color-alternative);
 
-  --color-cancel: var(--color-main);  
-  --color-error: #E62C03;
-  --color-error-dark: rgb(180, 10 ,0);
+  --color-cancel: var(--color-main);
+  --color-error: #e62c03;
+  --color-error-dark: rgb(180, 10, 0);
 }
 
 /* semantic color variables for this project */
 :root {
-
   --color-text: #cfcfcf;
   --color-text-highlight: var(--color-highlight);
   --color-text-alternative: var(--color-alternative);
@@ -37,13 +36,13 @@
   --color-text-disabled: #afafaf;
 
   --color-line: var(vt-c-divider-light-1);
-  
-  --color-control: rgb(100,100, 110);
+
+  --color-control: rgb(100, 100, 110);
   --color-control-light: rgb(120, 120, 120);
   --color-control-dark: rgb(60, 50, 50);
   --color-control-focus: var(--color-alternative);
 
-  --color-shadow-hover: rgba(220, 220, 220, .7);
+  --color-shadow-hover: rgba(220, 220, 220, 0.7);
 
   --section-gap: 160px;
 }
@@ -51,8 +50,8 @@
 :root {
   --gap: 0.5rem;
   --gap-xs: 0.2rem;
-  --gap-xl: 1rem; 
-  --gap-xxl: 1.5rem;  
+  --gap-xl: 1rem;
+  --gap-xxl: 1.5rem;
 }
 
 /* borders */
@@ -62,7 +61,7 @@
   --border-radius-xl: 0.4rem;
 
   --border-color: rgba(200, 200, 200, 0.4);
-  --border-color-shadow:  rgba(200, 200, 200, 0.1);
+  --border-color-shadow: rgba(200, 200, 200, 0.1);
 }
 
 :root {
@@ -72,12 +71,14 @@
 
 /* buttons */
 :root {
-  --button-background: linear-gradient(135deg, 
-  rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
-  rgba(255, 255, 255, 0.1) 20%, /* More subtle highlight */
-  rgba(200, 200, 200, 0.05) 50%, /* Soft transition to base color */
-  rgba(150, 150, 150, 0.02) 80%, /* Even softer transition */
-  rgba(100, 100, 100, 0) 100%); /* Almost transparent at the bottom */
+  --button-background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    /* Light highlight */ rgba(255, 255, 255, 0.1) 20%,
+    /* More subtle highlight */ rgba(200, 200, 200, 0.05) 50%,
+    /* Soft transition to base color */ rgba(150, 150, 150, 0.02) 80%,
+    /* Even softer transition */ rgba(100, 100, 100, 0) 100%
+  ); /* Almost transparent at the bottom */
 }
 
 /* panels */
@@ -85,21 +86,25 @@
   --panel-padding: var(--gap-xl);
   /*--panel-background: linear-gradient(15deg, var(--color-background) 15%, var(--color-background-secondary) 85%);*/
   --panel-border: solid 2px var(--color-border);
-  --panel-border-radius: var(--border-radius-xl);  
+  --panel-border-radius: var(--border-radius-xl);
 
-  --panel-background_old: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.3) 0%, /* Light highlight */
-    rgba(255, 255, 255, 0.1) 20%, /* More subtle highlight */
-    rgba(200, 200, 200, 0.05) 50%, /* Soft transition to base color */
-    rgba(150, 150, 150, 0.02) 80%, /* Even softer transition */
-    rgba(100, 100, 100, 0) 100%); /* Almost transparent at the bottom */
+  --panel-background_old: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    /* Light highlight */ rgba(255, 255, 255, 0.1) 20%,
+    /* More subtle highlight */ rgba(200, 200, 200, 0.05) 50%,
+    /* Soft transition to base color */ rgba(150, 150, 150, 0.02) 80%,
+    /* Even softer transition */ rgba(100, 100, 100, 0) 100%
+  ); /* Almost transparent at the bottom */
 
-  --panel-background: linear-gradient(135deg, 
-    rgba(200, 220, 255, 0.3) 0%, /* Light blue highlight */
-    rgba(180, 200, 235, 0.1) 20%, /* More subtle blue highlight */
-    rgba(150, 170, 200, 0.05) 50%, /* Soft transition to base color */
-    rgba(120, 140, 170, 0.02) 80%, /* Even softer transition */
-    rgba(100, 120, 150, 0.2) 100%); /* Almost transparent at the bottom */
+  --panel-background: linear-gradient(
+    135deg,
+    rgba(200, 220, 255, 0.3) 0%,
+    /* Light blue highlight */ rgba(180, 200, 235, 0.1) 20%,
+    /* More subtle blue highlight */ rgba(150, 170, 200, 0.05) 50%,
+    /* Soft transition to base color */ rgba(120, 140, 170, 0.02) 80%,
+    /* Even softer transition */ rgba(100, 120, 150, 0.2) 100%
+  ); /* Almost transparent at the bottom */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -130,7 +135,7 @@ body {
   /*background: var(--color-background);*/
   background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
   background: linear-gradient(to bottom, #1a2a6c, #4f0082, #6f009e); /* Darker blues and purples */
-  background: linear-gradient(to bottom, #1e3c72, #2a5298, #3669b3); /* Softer blues */  
+  background: linear-gradient(to bottom, #1e3c72, #2a5298, #3669b3); /* Softer blues */
   background-size: cover;
   background-attachment: fixed;
   transition:
@@ -157,10 +162,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.clickable, button {
+.clickable,
+button {
   cursor: pointer;
-}
-
-tr.clickable:hover {
-  border-bottom:1px solid var(--color-highlight);
 }
