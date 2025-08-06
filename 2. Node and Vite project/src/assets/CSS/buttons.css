@@ -8,9 +8,6 @@ button,
 
   /*border: none;*/
   border-radius: var(--border-radius);
-
-  cursor: pointer;
-  touch-action: manipulation;
 }
 
 button {
@@ -59,7 +56,6 @@ form button:hover,
   box-shadow: 1px 2px 5px rgba(50, 50, 50, 0.1); /* Optional: Subtle shadow */
 }
 
-/* text button... is used ? */
 .button-text {
   padding: var(--gap);
   /*background-color: var(--ba);*/
@@ -68,6 +64,9 @@ form button:hover,
 
   background: none;
   border: none;
+  border-radius: none;
+
+  box-shadow: none;
 }
 
 button.button-login {

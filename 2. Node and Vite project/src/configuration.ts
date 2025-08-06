@@ -4,4 +4,5 @@ export default {
   _apiUrl: 'https://localhost:50200',
   __apiUrl: 'http://127.0.0.1:50200',
   apiUrl: 'https://alchemyonradix.com',
+  app_domain: 'alchemyonradix',
 }

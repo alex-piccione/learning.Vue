@@ -53,6 +53,9 @@ Inspiration from:
 - https://www.perplexity.ai/
 - https://etherscan.io/tx/0x7712f3ac3db9cefcf3540d8c2a873cd440d29bf09c5eeed451fc5d53d59082ac#statechange
 
+SVG for icons:
+???
+
 ## Configuration
 
 The configuration is stored in _src/configuration.ts_ .

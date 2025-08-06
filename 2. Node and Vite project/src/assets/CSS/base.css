@@ -162,7 +162,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.clickable,
-button {
+a,
+button,
+.button,
+.clickable {
   cursor: pointer;
+  touch-action: manipulation;
 }

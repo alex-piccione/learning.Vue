@@ -1,5 +1,5 @@
 <template>
-  <VButton kind="Cancel" text="Back to list" @click="emit('close')"></VButton>
+  <TextButton text="&lArr; back to list" @click="emit('close')"></TextButton>
   <form>
     <div class="field">
       <label>Name</label>
@@ -33,6 +33,7 @@
 <script setup lang="ts">
 import type { CategoryData } from '@/stores/CategoryDataStore'
 import VButton from '../controls/VButton.vue'
+import TextButton from '../controls/TextButton.vue'
 
 defineProps<{ category: CategoryData }>()
 const emit = defineEmits(['close'])

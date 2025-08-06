@@ -20,7 +20,14 @@ app.use(vfm)
 
 console.info('App is starting...')
 
-await extendApi() // Call the function to extend the API, requires API Info to be set
+// npm run build says top-level await is not supported (npm run dev still works!)
+//await extendApi() // Call the function to extend the API, requires API Info to be set
+extendApi()
+  .then((_) => {}) // Call the function to extend the API, requires API Info to be set
+  .catch((error) => {
+    console.error('Error extending API:', error)
+  })
+
 extendDate() // Call the function to extend the Date prototype
 
 app.directive('focus', {

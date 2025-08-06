@@ -48,12 +48,10 @@ import PasswordForgotModal from './modals/PasswordForgotModal.vue'
 import UserState from './UserState.vue'
 import { debug } from '@/utils'
 import configuration from '@/configuration'
-import { useApiInfoStore } from '@/stores/ApiInfoStore_old'
+import { apiInfoProvider } from '@/providers/ApiInfoProvider'
 
 const authService = new AuthService()
-const apiInfoStore = useApiInfoStore()
 const userStore = useUserStore()
-//const categoryDataStore = useCategoryDataStore()
 
 const ui_version = import.meta.env.VITE_UI_VERSION
 const api_version = ref<string>('loading')
@@ -63,7 +61,15 @@ if (configuration.debug === false) console.log('configuration.debug is set to fa
 onMounted(() => {
   debug('App - onMounted')
 
-  api_version.value = apiInfoStore.version
+  apiInfoProvider
+    .getVersion()
+    .then((version) => {
+      api_version.value = version
+    })
+    .catch((error) => {
+      console.error('Failed to fetch API version:', error)
+      api_version.value = 'error'
+    })
 
   initialize()
 
