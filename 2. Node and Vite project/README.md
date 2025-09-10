@@ -1,7 +1,7 @@
 # Node and Vite project
 
 Node and Vite front-end project.  
-It uses back-edn API, the URL is sete in the configuration.
+It uses a back-end API, the URL is set in the configuration.
 
 ## Installation
 
@@ -11,7 +11,7 @@ It will ask for some settings, I used the following values:
 
 - Enabled Typescipt: Yes
 - Add JSX support: Yes
-- Pinta(?) for state managemnebt: No
+- Pinia for state managemnebt: No
 - Single Page Application: Yes
 - Tests: No
 
@@ -21,7 +21,7 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 
 ## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+See [Vite Configuration Reference](https://vite.dev/config).
 
 ## Project Setup
 
@@ -42,6 +42,7 @@ Use this command to run it in "development" mode.
 
 ## Packages
 
+- vite: a fast, modern build tool that uses native ES modules to provide an instant development server and optimizes code for production with Rollup.
 - pinia: as store system
 - vue-final-modal: for modal windows
 

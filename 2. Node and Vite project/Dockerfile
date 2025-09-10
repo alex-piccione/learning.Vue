@@ -1,15 +1,14 @@
-FROM node:23.6-alpine AS build
+FROM node:24-alpine AS build
 
 WORKDIR /app
 
 #RUN ls -l && echo "Listing of current directory:"
 #RUN echo -e $(ls)
 
-COPY package.json /
-COPY package-lock.json /
+COPY package.json /app
+COPY package-lock.json /app
 
-
-
+# TODO: run frozen libraries
 RUN npm install
 
 COPY . .
